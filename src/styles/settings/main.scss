@@ -1,0 +1,50 @@
+.bread-crumbs {
+  width: 100%;
+  height: 120px;
+  border-bottom: 2px solid;
+  border-color: rgba(243, 244, 249, 1);
+  padding: 20px 40px 0px 40px;
+
+  .bar {
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
+    color: rgba(104, 104, 104, 1.0);;
+  }
+
+  .tabs {
+    font-size: 17px;
+    font-weight: 500!important;
+    color: rgba(112,112,114,1);
+  }
+  .nav-tabs {
+    border-bottom: none;
+    cursor: pointer;
+    
+    .nav-item {
+      padding: 10px;
+      text-align: center;
+    }
+  }
+
+  .active {
+    border-bottom: 4px solid;
+    border-color: #8300b1 !important;
+    color: #8300b1 !important;
+  }
+
+  .tab-content {
+    width: 100%;
+  }
+
+  @media(max-width: 700px) {
+    height: 81px;
+    padding: 5px 10px 0px 10px;
+
+    .bar {
+      width: 100%;
+      height: 25px;
+      font-size: 15px;
+    }
+  }
+}

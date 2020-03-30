@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "accountStatus": 1, 
+    "userName": "Amy",
+    "profileImgName": "users (1).png",
+    "email": "tritika@getunify.co",
+    "accountType": 2,
+    "createAt": "",
+    "updatedAt": "",
+    "deletedAt": ""
+  },
+  {
+    "id": 2,
+    "accountStatus": 1, 
+    "userName": "Amy",
+    "profileImgName": "users (2).png",
+    "email": "tritika@getunify.co",
+    "accountType": 1,
+    "createAt": "",
+    "updatedAt": "",
+    "deletedAt": ""
+  },
+  {
+    "id": 3,
+    "accountStatus": 1, 
+    "userName": "Amy",
+    "profileImgName": "users (3).png",
+    "email": "tritika@getunify.co",
+    "accountType": 4,
+    "createAt": "",
+    "updatedAt": "",
+    "deletedAt": ""
+  },
+  {
+    "id": 4,
+    "accountStatus": 1, 
+    "userName": "Amy",
+    "profileImgName": "users (4).png",
+    "email": "tritika@getunify.co",
+    "accountType": 2,
+    "createAt": "",
+    "updatedAt": "",
+    "deletedAt": ""
+  },
+  {
+    "id": 5,
+    "accountStatus": 1, 
+    "userName": "Amy",
+    "profileImgName": "users (5).png",
+    "email": "tritika@getunify.co",
+    "accountType": 3,
+    "createAt": "",
+    "updatedAt": "",
+    "deletedAt": ""
+  },
+  {
+    "id": 6,
+    "accountStatus": 1, 
+    "userName": "Amy",
+    "profileImgName": "users (6).png",
+    "email": "tritika@getunify.co",
+    "accountType": 2,
+    "createAt": "",
+    "updatedAt": "",
+    "deletedAt": ""
+  },
+  {
+    "id": 7,
+    "accountStatus": 1, 
+    "userName": "Amy",
+    "profileImgName": "users (7).png",
+    "email": "tritika@getunify.co",
+    "accountType": 1,
+    "createAt": "",
+    "updatedAt": "",
+    "deletedAt": ""
+  }
+]

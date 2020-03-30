@@ -1,0 +1,146 @@
+.task {
+  width: 100%;
+  padding: .5rem;
+  margin-top: 10px;
+  cursor: pointer;
+  .form-group {
+    margin-bottom: 0px;
+  }
+  .task-footer {
+    height: 40px;
+    .left-section{
+      display: inline;
+      align-items: middle;
+      img {
+        width: 20px !important;
+        height: 20px !important;
+        margin: 5px !important;
+      }
+      span {
+        font-family: "Helvetica", Helvetica, Arial, serif;
+        font-size: 14.0px;
+        color: rgba(152, 152, 174, 1.0);
+        text-align: left;
+        line-height: 17.0px;
+      }
+    }
+    .right-section {
+      display: flex;
+      float: right;
+      img {
+        width: 30px !important;
+        height: 30px !important;
+        margin: 5px;
+      }
+    }
+  }
+}
+
+.task:hover {
+  border: 1px dashed #8300b1;
+}
+
+.priority-section {
+  display: inline;
+  .low-priority {
+    background-image: linear-gradient(to right, #88acff, #6cb2ff) ;
+    width: 92px;
+    height: 27px;
+    // position: absolute;
+    margin: 0;
+    left: 0px;
+    border-radius: 3px 0px 0px 3px;
+    overflow: hidden;
+    transform: rotate(0deg);
+    opacity: 1.0;
+    span {
+      top: 7px;
+      height: auto;
+      width: 94px;
+      position: absolute;
+      margin: 0;
+      left: -1px;
+      transform: rotate(0deg);
+      opacity: 1.0;
+      font-family: "Avenir-Book", Helvetica, Arial, serif;
+      font-size: 12.0px;
+      color: rgba(255, 255, 255, 1.0);
+      text-align: center;
+      line-height: 16.0px;
+    }
+  }
+  .med-priority {
+    background-image: linear-gradient(to right, #ff9b69, #ffa948) ;
+    width: 92px;
+    height: 27px;
+    // position: absolute;
+    margin: 0;
+    left: 0px;
+    border-radius: 3px 0px 0px 3px;
+    overflow: hidden;
+    transform: rotate(0deg);
+    opacity: 1.0;
+    span {
+      top: 7px;
+      height: auto;
+      width: 94px;
+      position: absolute;
+      margin: 0;
+      left: -1px;
+      transform: rotate(0deg);
+      opacity: 1.0;
+      font-family: "Avenir-Book", Helvetica, Arial, serif;
+      font-size: 12.0px;
+      color: rgba(255, 255, 255, 1.0);
+      text-align: center;
+      line-height: 16.0px;
+    }
+  }
+  .high-priority {
+    background-image: linear-gradient(to right, #df77d5, #e972aa) ;
+    width: 92px;
+    height: 27px;
+    // position: absolute;
+    margin: 0;
+    left: 0px;
+    border-radius: 3px 0px 0px 3px;
+    overflow: hidden;
+    transform: rotate(0deg);
+    opacity: 1.0;
+    span {
+      top: 7px;
+      height: auto;
+      width: 94px;
+      position: absolute;
+      margin: 0;
+      left: -1px;
+      transform: rotate(0deg);
+      opacity: 1.0;
+      font-family: "Avenir-Book", Helvetica, Arial, serif;
+      font-size: 12.0px;
+      color: rgba(255, 255, 255, 1.0);
+      text-align: center;
+      line-height: 16.0px;
+    }
+  }
+}
+
+.description-section {
+  line-height: 20px;
+  padding: 10px 0px 10px 0px;
+  span {
+    background-color: rgba(255,255,255,0.0);
+    height: auto;
+    width: 100%;
+    margin: 0;
+    transform: rotate(0deg);
+    opacity: 1.0;
+    font-family: "Helvetica", Helvetica, Arial, serif;
+    font-size: 16.0px;
+    color: rgba(111, 111, 144, 1.0);
+    text-align: left;
+  }
+}
+
+
+

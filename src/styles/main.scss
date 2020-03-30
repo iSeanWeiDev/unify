@@ -1,0 +1,90 @@
+$text-color: #212529;
+$primary-color: #b540de;
+$dark-gray: #bebebe;
+$red: #A30015;
+body {
+    font-family: "Avenir-Book", Helvetica, Arial, serif;
+    font-size: 20px;
+    color: $text-color;
+    overflow: overlay;
+}
+.layout {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    .content {
+        flex: 1;
+    }
+}
+input, textarea {
+    border: none;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 14px !important;
+    &.error {
+        border: 1px solid $red;
+    }
+}
+.btn {
+    &.btn-white {
+        background-color: #fff;
+    }
+    &.btn-purple {
+        background-color: $primary-color;
+        color: #fff;
+    }
+    &.squared {
+        border-radius: 0;
+    }
+}
+.form-title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: $primary-color;
+    margin: 15px 0;
+    > span  {
+        position: relative;
+        display: inline-block;
+        height: 30px;
+        &:after {
+            content: '';
+            width: 100%;
+            position: absolute;
+            left: 0;
+            bottom: 1px;
+            border-width: 0 0 2px;
+            border-style: solid;
+        }
+    }
+}
+.form-default {
+    text-align: left;
+    input, textarea {
+        display: block;
+        border-bottom: 1px solid $dark-gray;
+    }
+    input {
+        height: calc(1.5em + .75rem + 2px);
+        width: 100%;
+        padding: .375rem .75rem;
+        line-height: 1.5;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+    label {
+        font-size: 16px;
+        color: $dark-gray;
+        letter-spacing: 0.7px;
+    }
+    .field-error {
+        font-size: 14px;
+        color: $red;
+    }
+}
+
+@media (min-width: 1600px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1440px;
+    }
+}

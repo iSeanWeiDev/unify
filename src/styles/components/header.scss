@@ -1,0 +1,140 @@
+.navbar {
+  position: fixed !important;
+  width: 100%;
+  height: 70px;
+  padding: 0px !important;
+  display: flex;
+  align-items: center;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 2px solid;
+    border-color: #f3f4f9;
+  .container {
+    height: 100%;
+    // border-bottom: 2px solid;
+    // border-color: #f3f4f9;
+    // @media only screen and (max-width: 600px)  {
+    //   width: 100px
+    // }
+  }
+  .navbar-brand {
+    padding: 0px;
+    .logo {
+      width: 123px !important;
+      height: 50px !important;
+      padding-left: 8px;
+
+      // @media(max-width: 700px) {
+      //   height: 30px!important;
+      // }
+    }
+  }
+
+  .navbar-toggler {
+    margin-right: 8px !important;
+  }
+  .form-inline{
+    .searchBar {
+      width: 320px;
+      height: 70px;
+      float: left;
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border-right: 2px solid;
+      border-color: rgba(243, 244, 249, 1);
+      text-align: center;
+      
+      img {
+        width: 20px;
+        height: 20px;
+        margin-top: 8px;
+      }
+      
+      input {
+        width: 300px;
+        font-size: 15px;
+        border: 0px;
+        outline: none;
+      }
+    }
+  
+    .notification{
+      width: 80px;
+      height: 70px;
+      float: left;
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border-right: 2px solid;
+      border-color: rgba(243, 244, 249, 1);
+      text-align: center;
+  
+      img {
+        height: 19px;
+        width: 16px;
+        margin-left: 32px;
+      }
+    
+      span {
+        padding: 2.5px;
+        border-radius: 10px;
+        color:white;
+        background:red;
+        font-size: 6px;
+        font-weight: bold;
+        width: 13px;
+        height: 13px;
+        position: absolute;
+        left: 40px;
+        top: 25px;
+      }
+    }
+  
+    .avatar {
+      width: 120px;
+      height: 70px;
+      float: left;
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+  
+      img {
+        width: 40px;
+        height: 40px;
+        margin-left: 28px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .searchBar {
+        display: none;
+      }
+
+      .notification{
+        display: none;
+      }
+
+      .avatar {
+        display: none
+      }
+    }
+  }
+  @media (max-width: 700px) {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    .navbar-collapse  {
+      background: rgba(243, 244, 249, 1);
+    }
+  }
+}

@@ -1,0 +1,93 @@
+.feature-board {
+  padding: 2rem 2rem 2rem 3rem ;
+  margin-top: 30px;
+  .title {
+    display: inline;
+    
+    span {
+      background-color: rgba(255,255,255,0.0);
+      height: auto;
+      width: 187px;
+      margin: 0;
+      transform: rotate(0deg);
+      opacity: 1.0;
+      font-family: "Avenir-Book", Helvetica, Arial, serif;
+      font-size: 28.0px;
+      color: #707090;
+      text-align: left;
+      line-height: 38.0px;
+      padding-right: 20px;
+    }
+
+    button {
+      background-color: #ffffff;
+      border-radius: 50px;
+      border: none;
+      width: 38px;
+      box-shadow: 0px 0px 13px 3px #e1e4ea;
+      outline: none;
+      height: 38px;
+      svg {
+        font-size: 25px;
+        color: #ccccd7;
+        font-weight: bolder;
+      }
+    }
+  }
+  .pannel{
+    padding: 20px;
+    width: 300px;
+    .card {
+      border: none;
+      box-shadow: 0px 0px 5px 5px #ccccd7;
+      img {
+        height: 5px;
+        width: 100%;
+        border-radius: 5px;
+      }
+      .card-title {
+        padding: .75rem;
+        .title-span {
+          color: rgba(112, 112, 144, 1.0);
+          text-align: left;
+          line-height: 24.0px;
+          font-size: 20px;
+          transform: rotate(0deg);
+          opacity: 1.0;
+          font-family: "Helvetica", Helvetica, Arial, serif;
+          font-weight: 500;
+        }
+        img {
+          position: absolute;
+          width: 20px;
+          height: 23px;
+          position: absolute;
+          right: 2.5rem;
+        }
+        .icon-span {
+          position: absolute;
+          right: 1rem
+        }
+      }
+      .card-body {
+        padding: .5rem;
+      }
+      .card-footer {
+        border:none;
+        background-color: white;
+        padding: 0em;
+        font-family: "Helvetica", Helvetica, Arial, serif;
+        font-size: 16.0px;
+        text-align: center;
+        button {
+          color: rgb(152, 152, 174);
+          img {
+            padding-left: 10px;
+            width: 30px;
+            height: 20px;
+          }
+        }
+      }
+    }
+  }
+}

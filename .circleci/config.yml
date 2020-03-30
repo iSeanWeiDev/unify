@@ -1,0 +1,59 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: node:12
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # run tests
+      - run: yarn test
+
+  deploy:
+    machine:
+      enabled: true
+
+    requires:
+      - build # only deploy once build job has completed
+
+    filters:
+      branches:
+        only: master # only deploy on the master branch
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "e0:56:43:56:9b:ac:8c:9e:46:6e:87:f7:f2:fa:1b:ad"
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh $SSH_USER@$SSH_HOST "cd /home/unify-app && git pull && docker-compose down && docker system prune -a --force && docker-compose up --build -d && exit"
+            
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:  # Only when build succeed
+            - build
+          filters:
+            branches:
+              only: master
