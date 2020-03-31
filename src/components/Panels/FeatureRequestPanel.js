@@ -21,16 +21,11 @@ function CustomToggle({ children, eventKey }) {
 
 function FeatureRequestPanel({title, requests}) {
   const [editModalShow, setEditModalShow] = useState(false);
-  const [addNewModalShow, setAddNewModalShow] = useState(false);
   const [editModalData, setEditModalData] = useState({});
 
   const handleEditModalShow = (request) => {
     setEditModalData(request);
     setEditModalShow(true);
-  };
-
-  const handleAddNewModalShow = () => {
-    setAddNewModalShow(true)
   };
 
   return (
