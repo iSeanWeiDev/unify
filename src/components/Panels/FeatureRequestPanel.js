@@ -1,13 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import {FormGroup, Card, Accordion, Button} from 'react-bootstrap';
+import {FormGroup, Card, Accordion, Button, useAccordionToggle} from 'react-bootstrap';
 import EditRequestModal from '../Modal/EditRequestModal';
+
+function CustomToggle({ children, eventKey }) {
+  const decoratedOnClick = useAccordionToggle(eventKey, e => {
+    console.log('totally custom!', e);
+    e.stopPropagation();
+  },
+  );
+
+  return (
+    <Button
+      variant="link"
+      onClick={decoratedOnClick}
+    >
+      {children}
+    </Button>
+  );
+}
 
 function FeatureRequestPanel({title, requests}) {
   const [editModalShow, setEditModalShow] = useState(false);
   const [addNewModalShow, setAddNewModalShow] = useState(false);
+  const [editModalData, setEditModalData] = useState({});
 
-  const handleEditModalShow = () => {
-    setEditModalShow(true)
+  const handleEditModalShow = (request) => {
+    setEditModalData(request);
+    setEditModalShow(true);
   };
 
   const handleAddNewModalShow = () => {
@@ -28,13 +47,13 @@ function FeatureRequestPanel({title, requests}) {
               return (
                 <div key={request.id}>
                   <Card 
-                    onClick={handleEditModalShow}  
+                    onClick={() => handleEditModalShow(request)}  
                     className="request-card"
                   >
                     <Card.Header className={request.status}>
-                      <Accordion.Toggle as={Button} variant="link" eventKey={request.id}>
+                      <CustomToggle eventKey={request.id}>
                         {request.name}
-                      </Accordion.Toggle>
+                      </CustomToggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey={request.id}>
                       <Card.Body>
@@ -42,15 +61,17 @@ function FeatureRequestPanel({title, requests}) {
                       </Card.Body>
                     </Accordion.Collapse>
                   </Card>
-                  <EditRequestModal
-                    show={editModalShow}
-                    data={request}
-                    onHide={() => setEditModalShow(false)}
-                  />
                 </div>
               )
             })}
-              
+
+            {editModalShow && (
+              <EditRequestModal
+                show={editModalShow}
+                data={editModalData}
+                onHide={() => setEditModalShow(false)}
+              />
+            )}
           </Accordion>
         </Card.Body>
       </Card>

@@ -3,7 +3,7 @@ import { Row, Col, Modal, Button, Form } from 'react-bootstrap';
 import MultiSelect from "react-multi-select-component";
 import '../../styles/components/modal.scss';
 
-function EditTaskModal(props) {
+function EditRequestModal(props) {
   const tagList = [
     { label: "Reporting", value: "reporting" },
     { label: "Admin Setting", value: "adminsetting" },
@@ -172,4 +172,4 @@ function EditTaskModal(props) {
   );
 }
 
-export default EditTaskModal;
+export default EditRequestModal;
