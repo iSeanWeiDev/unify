@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {Nav} from 'react-bootstrap';
-import Users from './users';
-import DisabledUsers from './disabled-users';
-import RestoreUsers from './restore-users';
+import Users from './Users';
+import DisabledUsers from './DisabledUsers';
+import RestoreUsers from './RestoreUsers';
 
-import './../../../styles/settings/main.scss';
-const Example4 = () => {
+import '../../../../styles/pages/dashboard/user-administration/main.scss';
+const UserAdministration = () => {
   const [tab, setTab] = useState(0);
 
   const handleSelectTab = index => {
@@ -69,4 +69,4 @@ const Example4 = () => {
   )
 }
 
-export default Example4;
+export default UserAdministration;

@@ -3,11 +3,11 @@ import {FormGroup, Row} from 'react-bootstrap';
 import {ChevronDown} from 'react-bootstrap-icons';
 import { connect } from 'react-redux';
 import { equals, isEmpty, isNil } from 'ramda';
-import Panel from '../../components/Panel';
-import UserStoryActions from '../../actions/user-story';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import Panel from '../../../../components/Panel';
+import UserStoryActions from '../../../../actions/user-story';
+import LoadingSpinner from '../../../../components/LoadingSpinner';
 
-import '../../styles/pages/dashboard/feature-board.scss';
+import '../../../../styles/pages/dashboard/user-stories/feature-board.scss';
 
 const FeatureBoard = ({
   getUserStoryRequest,
@@ -65,12 +65,12 @@ const FeatureBoard = ({
       ) : (
         <div className="feature-board">
           <div className="title">
-          <FormGroup>
-            <span>Feature Board</span>
-            <button className="btn-dropdown">
-              <ChevronDown />
-            </button>
-          </FormGroup>
+            <FormGroup>
+              <span>Feature Board</span>
+              <button className="btn-dropdown">
+                <ChevronDown />
+              </button>
+            </FormGroup>
         </div>
         <div className="content">
           <Row>

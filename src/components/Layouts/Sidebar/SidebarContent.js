@@ -14,13 +14,13 @@ function SidebarContent({
   const tabStatus = match.params.tabID;
   return (
     <div className="sidebarWrapper">
-      <Link to="/dashboard/feature-board">
+      <Link to="/dashboard/user-stories">
         <FormGroup className="tabs">
           <div 
-            className={tabStatus === "feature-board" || tabStatus === undefined ? "text-center items active" : "text-center items"}
+            className={tabStatus === "user-stories" || tabStatus === undefined ? "text-center items active" : "text-center items"}
             onClick={()=>handleSelectTab(0)}>
             <Image 
-              src={`/images/assets/${tabStatus === "feature-board" || tabStatus === undefined ? 'icon-selected-home.png' : 'icon-home.png'}`}
+              src={`/images/assets/${tabStatus === "user-stories" || tabStatus === undefined ? 'icon-selected-home.png' : 'icon-home.png'}`}
             />
           </div>
         </FormGroup>

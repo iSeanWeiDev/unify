@@ -24,7 +24,7 @@ const App = () => (
           <PublicRoute exact path="/" component={Home} layout={BasicLayout} />
           <PublicRoute exact path="/about" component={About} layout={BasicLayout} />
           <PublicRoute exact path="/login" component={Login} layout={BasicLayout} />
-          <PrivateRoute exact path="/dashboard/:tabID?" component={Dashboard} />
+          <PrivateRoute exact path="/dashboard/:tabID/:featureID?" component={Dashboard} />
         </Switch>
       </Router>
     </PersistGate>
