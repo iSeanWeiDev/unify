@@ -12,7 +12,6 @@ function Login({
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [check, setCheck] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
@@ -22,16 +21,15 @@ function Login({
     setPassword(e.target.value)
   }
 
-  const handleCheckChange = (e) => {
-    setCheck(e.target.checked)
-  }
-
   const handleSumbit = (e) => {
     const payload = {
       email, password
     }
+
+    console.log(payload)
     postLogin(payload);
   }
+
   useEffect(() => {
     isAuthenticated ? history.push('/dashboard') : history.push('/login');
   }, [isAuthenticated])
@@ -39,7 +37,7 @@ function Login({
     <div className="login-container">
       <div className="title">
         <Image src="/images/logo.png" />
-        <p>Login</p>
+        <p>Login</p> <hr />
       </div>
       <div className="login-form">
         <Form>
@@ -48,6 +46,7 @@ function Login({
             <Form.Control 
               value={email}
               onChange={handleEmailChange} 
+              placeholder="Email"
               type="email" 
               autoFocus
             />
@@ -60,35 +59,21 @@ function Login({
             <Form.Label>Password</Form.Label>
             <Form.Control
               value={password}
+              placeholder="Password"
               onChange={handlePasswordChange} 
               type="password"
               required 
             />
           </Form.Group>
 
-          <Row className="validation">
-            <Col md={7}>
-              <Form.Group controlId="checkbox">
-                <Form.Check 
-                  type="checkbox" 
-                  value={check}
-                  onChange={handleCheckChange}
-                  label="I agree with terms of services" 
-                />
-              </Form.Group>
-            </Col>
-            <Col md={5}>
-              <Button
-                className="squared" 
-                variant="primary" 
-                type="button"
-                disabled={!check}
-                onClick={handleSumbit}
-              >
-                LOGIN
-              </Button>
-            </Col>
-          </Row>
+          <Button
+            className="squared" 
+            variant="primary" 
+            type="button"
+            onClick={handleSumbit}
+          >
+            LOGIN
+          </Button>
         </Form>
       </div>
     </div>

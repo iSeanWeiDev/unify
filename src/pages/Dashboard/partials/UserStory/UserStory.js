@@ -26,6 +26,10 @@ function UserStory ({
 
   useEffect(() => {
     switch(uri) {
+      case undefined: 
+        setTitleName('Feature Request');
+        history.push('/dashboard/user-stories/feature-request')
+        break;
       case 'feature-request':
         setTitleName('Feature Request');
         history.push('/dashboard/user-stories/feature-request')
