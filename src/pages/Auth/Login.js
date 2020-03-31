@@ -21,12 +21,11 @@ function Login({
     setPassword(e.target.value)
   }
 
-  const handleSumbit = (e) => {
+  const handleSumbit = () => {
     const payload = {
       email, password
     }
 
-    console.log(payload)
     postLogin(payload);
   }
 
@@ -40,7 +39,7 @@ function Login({
         <p>Login</p> <hr />
       </div>
       <div className="login-form">
-        <Form>
+        <Form method="POST">
           <Form.Group controlId="email">
             <Form.Label>Email address</Form.Label>
             <Form.Control 

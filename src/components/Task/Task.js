@@ -81,7 +81,6 @@ function Task ({taskData}) {
   const [modalShow, setModalShow] = useState(false);
   
   const handleShow = (e, data) => {
-    // console.log(data);
     setModalShow(true)
   };
 

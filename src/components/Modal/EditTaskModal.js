@@ -6,7 +6,6 @@ import { equals, isEmpty, isNil } from 'ramda';
 import '../../styles/components/modal.scss';
 
 function EditTaskModal(props) {
-  console.log(props);
   const tagList = [
     { label: "Reporting", value: "reporting" },
     { label: "Admin Setting", value: "adminsetting" },

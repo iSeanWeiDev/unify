@@ -10,46 +10,29 @@ import '../../../../styles/pages/dashboard/user-stories/main.scss';
 function UserStory ({
   match
 }) {
-  let titles = [
+  const titles = [
     {label: "Feature Request", value: "feature-request"},
     {label: "Feature Board", value: "feature-board"}
   ];
+  const featureID = match.params.featureID;
 
   const history = useHistory();
-  const [titleName, setTitleName] = useState()
-  const [uri, setUri] = useState(match.params.featureID)
 
   const handleDropdownChange = title => {
-    setTitleName(title.label);
-    setUri(title.value);
+    history.push(`/dashboard/user-stories/${title.value}`);
   };
 
-  useEffect(() => {
-    switch(uri) {
-      case undefined: 
-        setTitleName('Feature Request');
-        history.push('/dashboard/user-stories/feature-request')
-        break;
-      case 'feature-request':
-        setTitleName('Feature Request');
-        history.push('/dashboard/user-stories/feature-request')
-        break;
-      case 'feature-board':
-        setTitleName('Feature Board');
-        history.push('/dashboard/user-stories/feature-board')
-        break;
-      default:
-        setTitleName('Feature Request');
-        history.push('/dashboard/user-stories/feature-request')
-        break;
-    }
-  }, [uri]);
+  function getTitle() {
+    if (featureID === 'feature-request') return 'Feature Request';
+    if (featureID === 'feature-board') return 'Feature Board';
+    return 'Feature Request';
+  }
 
   return (
     <div className="user-stories">
       <div className="title">
         <FormGroup>
-          <span> {titleName} </span>
+          <span> {getTitle()} </span>
           <DropdownButton 
             alignRight
             className="btn-dropdown"
@@ -67,10 +50,10 @@ function UserStory ({
         </FormGroup>
       </div>
       <div className="content">
-        {uri === "feature-request" ? (
-          <FeatureRequest />
-        ) : (
+        {featureID === "feature-board" ? (
           <FeatureBoard />
+        ) : (
+          <FeatureRequest />
         )}
       </div>
     </div>
