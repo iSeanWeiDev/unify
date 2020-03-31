@@ -1,39 +1,5 @@
 .feature-board {
-  padding: 2rem 2rem 2rem 3rem ;
-  margin-top: 30px;
-  .title {
-    display: inline;
-    
-    span {
-      background-color: rgba(255,255,255,0.0);
-      height: auto;
-      width: 187px;
-      margin: 0;
-      transform: rotate(0deg);
-      opacity: 1.0;
-      font-family: "Avenir-Book", Helvetica, Arial, serif;
-      font-size: 28.0px;
-      color: #707090;
-      text-align: left;
-      line-height: 38.0px;
-      padding-right: 20px;
-    }
-
-    button {
-      background-color: #ffffff;
-      border-radius: 50px;
-      border: none;
-      width: 38px;
-      box-shadow: 0px 0px 13px 3px #e1e4ea;
-      outline: none;
-      height: 38px;
-      svg {
-        font-size: 25px;
-        color: #ccccd7;
-        font-weight: bolder;
-      }
-    }
-  }
+  padding : 0 1rem 0 1rem;
   .pannel{
     padding: 20px;
     width: 300px;

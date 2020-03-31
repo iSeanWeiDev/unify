@@ -1,0 +1,85 @@
+.feature-request {
+  padding : 0 1rem 0 1rem;
+  .panel {
+    padding: 20px;
+    width: 310px;
+    .card {
+      border: none;
+      // box-shadow: 0px 0px 5px 5px #ccccd7;
+      .card-title {
+        padding: 0px;
+        text-align: center;
+        .title-span {
+          color: rgba(112, 112, 144, 1.0);
+          text-align: left;
+          line-height: 24.0px;
+          font-size: 23px;
+          transform: rotate(0deg);
+          opacity: 1.0;
+          font-family: "Helvetica", Helvetica, Arial, serif;
+          font-weight: 500;
+        }
+      }
+      .card-body {
+        padding: .5rem;
+        .request-card {
+          width: 260px;
+          .card-header {
+            height: 36px;
+            padding: 0;
+            border: none;
+            border-radius: 5px 0px 5px 0px;
+            margin-top: 1.5rem;
+            vertical-align: middle;
+            cursor: pointer;
+            button {
+              position: absolute;
+              padding: .4rem;
+              opacity: 1.0;
+              font-family: "Avenir-Heavy", Helvetica, Arial, serif;
+              font-size: 16.0px;
+              color: rgba(255, 255, 255, 1.0);
+              text-align: left;
+              line-height: 22.0px;
+            }
+          }
+          .card-body {
+            font-size: 15px;
+            color: rgba(112, 112, 144, 1.0);
+            font-family: "Helvetica", Helvetica, Arial, serif;
+            font-weight: 500;
+          }
+        }
+      }
+      .inbox {
+        background-image: linear-gradient(to right, #d87af3, #ef6f8d) ;
+      }
+      .up-next {
+        background-image: linear-gradient(to right, #ff917e, #ffb32c) ;
+      }
+      .in-review {
+        background-image: linear-gradient(to right, #9ba7ff, #54b6fe) ;
+      }
+      .moved-to-feature-board {
+        background-image: linear-gradient(to right, #5cd7a6, #60d8f0) ;
+      }
+    }
+  }
+
+  .add-new-request {
+    position: absolute;
+    bottom: 70px;
+    right: 70px;
+    button {
+      width: 60px;
+      height: 60px;
+      border-radius: 50px;
+      background-image: linear-gradient(to right, #91aaff, #54b6fe) ;
+      border: none;
+      svg {
+        font-size: 42px;
+        margin-left: -3.5px;
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import {FormGroup, Row} from 'react-bootstrap';
 import {ChevronDown} from 'react-bootstrap-icons';
 import { connect } from 'react-redux';
 import { equals, isEmpty, isNil } from 'ramda';
-import Panel from '../../../../components/Panel';
+import FeatureBoardPanel from '../../../../components/Panels/FeatureBoardPanel';
 import UserStoryActions from '../../../../actions/user-story';
 import LoadingSpinner from '../../../../components/LoadingSpinner';
 
@@ -30,7 +30,6 @@ const FeatureBoard = ({
 
   useEffect(() => {
     if (isDone && userStoryData.data.length > 0 && userStoryData.data !== "No tenant connection") {
-      console.log(userStoryData.data)
       userStoryData.data.forEach(element => {
         switch (element.status) {
           case 'backlog':
@@ -64,35 +63,25 @@ const FeatureBoard = ({
         <LoadingSpinner /> 
       ) : (
         <div className="feature-board">
-          <div className="title">
-            <FormGroup>
-              <span>Feature Board</span>
-              <button className="btn-dropdown">
-                <ChevronDown />
-              </button>
-            </FormGroup>
-        </div>
-        <div className="content">
           <Row>
-            <Panel 
+            <FeatureBoardPanel 
               title="backlog"
               tasks={backlogData}
             />
-            <Panel 
+            <FeatureBoardPanel 
               title="In Progress"
               tasks={inprogressData}
             />
-            <Panel 
+            <FeatureBoardPanel 
               title="Review"
               tasks={reviewData}
             />
-            <Panel 
+            <FeatureBoardPanel 
               title="Complete"
               tasks={completeData}
             />
           </Row>
         </div>
-      </div> 
       ) }
      </>
   );

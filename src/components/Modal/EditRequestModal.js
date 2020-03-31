@@ -1,12 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import { Row, Col, Modal, Button, Form } from 'react-bootstrap';
 import MultiSelect from "react-multi-select-component";
-import { connect } from 'react-redux';
-import { equals, isEmpty, isNil } from 'ramda';
-import '../../styles/components/edit-task-modal.scss';
+import '../../styles/components/modal.scss';
 
 function EditTaskModal(props) {
-  console.log(props);
   const tagList = [
     { label: "Reporting", value: "reporting" },
     { label: "Admin Setting", value: "adminsetting" },
@@ -14,17 +11,31 @@ function EditTaskModal(props) {
   ];
 
   const priorityList = [
-    {value: 'low', display: 'Low'},
-    {value: 'medium', display: 'Medium'},
-    {value: 'high', display: 'High'},
+    {value: 'inbox', display: 'Inbox'},
+    {value: 'up-next', display: 'Up Next'},
+    {value: 'in-review', display: 'In Review'},
+    {value: 'moved-to-feature-board', display: 'Moved to Feature Board'},
   ];
 
+  const [name, setName] = useState(`${props.data.assignee_user.first_name} ${props.data.assignee_user.last_name}`);
+  const [email, setEmail] = useState(props.data.assignee_user.email);
+  const [phone, setPhone] = useState(props.data.assignee_user.phone);
   const [title, setTitle] = useState(props.data.name);
   const [description, setDescription] = useState(props.data.description);
-  const [priority, setPriority] = useState(props.data.priority);
+  const [status, setStatus] = useState(props.data.status);
   const [tags, setTags] = useState(props.data.tags);
   const [checked, setChecked] = useState(false);
 
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  }
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  }
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+  }
+  
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   }
@@ -32,8 +43,8 @@ function EditTaskModal(props) {
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
   }
-  const handlePriorityChange = (e) => {
-    setPriority(e.target.value)
+  const handleStatusChange = (e) => {
+    setStatus(e.target.value)
   }
 
   const handleTagsChanges = (e) => {
@@ -49,7 +60,7 @@ function EditTaskModal(props) {
     if (checked) {
       console.log(title);
       console.log(description);
-      console.log(priority);
+      console.log(status);
       console.log(tags);
     }
   }
@@ -63,16 +74,43 @@ function EditTaskModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          <span>Edit User Story</span>
+          <span>Edit Feature Request</span>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Name</Form.Label>
+            <Form.Control 
+              type="text" 
+              placeholder="Input your full name..." 
+              value={name}
+              onChange={handleNameChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Email</Form.Label>
+            <Form.Control 
+              type="email" 
+              placeholder="Input your email..." 
+              value={email}
+              onChange={handleEmailChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Phone</Form.Label>
+            <Form.Control 
+              type="number" 
+              placeholder="Input your phone number..." 
+              value={phone}
+              onChange={handlePhoneChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Label>Task Title</Form.Label>
             <Form.Control 
               type="text" 
-              placeholder="Input your task title..." 
+              placeholder="Input your request title..." 
               value={title}
               onChange={handleTitleChange}
             />
@@ -87,10 +125,10 @@ function EditTaskModal(props) {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.SelectCustom">
-            <Form.Label>Choose the priority...</Form.Label>
+            <Form.Label>Choose the status...</Form.Label>
             <Form.Control 
-              onChange={handlePriorityChange}
-              value={priority}
+              onChange={handleStatusChange}
+              value={status}
               as="select" 
             >
               {priorityList.map((priority) => <option value={priority.value} key={priority.value}> {priority.display}</option>)}

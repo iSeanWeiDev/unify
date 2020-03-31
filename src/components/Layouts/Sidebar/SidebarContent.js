@@ -14,7 +14,7 @@ function SidebarContent({
   const tabStatus = match.params.tabID;
   return (
     <div className="sidebarWrapper">
-      <Link to="/dashboard/user-stories">
+      <Link to="/dashboard">
         <FormGroup className="tabs">
           <div 
             className={tabStatus === "user-stories" || tabStatus === undefined ? "text-center items active" : "text-center items"}

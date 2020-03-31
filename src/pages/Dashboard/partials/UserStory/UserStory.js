@@ -11,20 +11,36 @@ function UserStory ({
   match
 }) {
   let titles = [
-    {label: "Feature Request", value: 0},
-    {label: "Feature Board", value: 1}
+    {label: "Feature Request", value: "feature-request"},
+    {label: "Feature Board", value: "feature-board"}
   ];
 
   const history = useHistory();
-  const [titleName, setTitleName] = useState('Feature Request')
+  const [titleName, setTitleName] = useState()
+  const [uri, setUri] = useState(match.params.featureID)
 
-  const handleDropdownChange = label => {
-    setTitleName(label);
+  const handleDropdownChange = title => {
+    setTitleName(title.label);
+    setUri(title.value);
   };
 
   useEffect(() => {
-    titleName === "Feature Request" ? history.push('/dashboard/user-stories/feature-request') : history.push('/dashboard/user-stories/feature-board') 
-  }, [titleName])
+    switch(uri) {
+      case 'feature-request':
+        setTitleName('Feature Request');
+        history.push('/dashboard/user-stories/feature-request')
+        break;
+      case 'feature-board':
+        setTitleName('Feature Board');
+        history.push('/dashboard/user-stories/feature-board')
+        break;
+      default:
+        setTitleName('Feature Request');
+        history.push('/dashboard/user-stories/feature-request')
+        break;
+    }
+  }, [uri]);
+
   return (
     <div className="user-stories">
       <div className="title">
@@ -37,7 +53,7 @@ function UserStory ({
           >
             {titles.map(title => (
                 <Dropdown.Item 
-                  onClick={() => handleDropdownChange(title.label)}
+                  onClick={() => handleDropdownChange(title)}
                   key={title.value}
                 >
                   {title.label}
@@ -47,7 +63,7 @@ function UserStory ({
         </FormGroup>
       </div>
       <div className="content">
-        {match.params.featureID === "feature-request" ? (
+        {uri === "feature-request" ? (
           <FeatureRequest />
         ) : (
           <FeatureBoard />

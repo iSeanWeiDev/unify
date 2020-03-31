@@ -5,8 +5,8 @@ import {
   Card, 
   Button
 } from 'react-bootstrap';
-import TaskComponent from './Task/Task';
-import AddTaskModal from './Task/AddTaskModal';
+import TaskComponent from '../Task/Task';
+import AddTaskModal from '../Modal/AddTaskModal';
 
 function Panel ({title, tasks}) {
   const [modalShow, setModalShow] = useState(false);

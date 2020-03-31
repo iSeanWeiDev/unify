@@ -10,7 +10,6 @@ function Dashboard({
   match
 }) {
   const tabStatus = match.params.tabID;
-  console.log("tabStatus", tabStatus)
   const dashboardElement = () => {
     let element = <UserStory />;
     switch(tabStatus) {
@@ -35,7 +34,6 @@ function Dashboard({
 
   return (
     <div className="main">
-      Dashboard
       {dashboardElement()}
     </div>
   )

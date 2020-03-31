@@ -7,7 +7,7 @@ import {
   Form
 } from 'react-bootstrap';
 import MultiSelect from "react-multi-select-component";
-import '../../styles/components/edit-task-modal.scss';
+import '../../styles/components/modal.scss';
 
 function EditTaskModal(props) {
   const options = [

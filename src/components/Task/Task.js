@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import '../../styles/components/task.scss';
-import EditTaskModal from './EditTaskModal';
+import EditTaskModal from '../Modal/EditTaskModal';
 import { 
   Row, 
   Col, 
