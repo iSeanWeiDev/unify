@@ -32,14 +32,14 @@ const create = (baseURL = config.API_BASE_URL) => {
     delete payload.id;
     return authMiddleWare(api).put(`/feature-requests/${id}`, payload);
   }
-  const getUserStory = () => authMiddleWare(api).get('/user-stories');
+  const getTasks = () => authMiddleWare(api).get('/user-stories');
 
   return {
     postLogin,
     getAllFeatures,
     createNewFeature,
     updateFeature,
-    getUserStory,
+    getTasks,
   }
 }
 

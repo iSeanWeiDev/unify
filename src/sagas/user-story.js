@@ -57,14 +57,17 @@ export function* updateFeatureRequest(api, action) {
 }
 
 // Get user story request.
-export function* getUserStoryRequest(api, action) {
-  const response = yield api.getUserStory();
+export function* getTasksRequest(api, action) {
+  const response = yield api.getTasks();
   if (response.ok) {
-    // Render data to login success
-    yield put(UserStoryActions.getUserStorySuccess(response.data));
+    if (response.data.data !== "No tenant connection") {
+      yield put(UserStoryActions.getTasksSuccess(response.data.data));
+    } else {
+      yield put(AppActions.clearRequest());
+      yield call(history.push, '/login');
+    }
   } else {
-    // Render data to login failure
-    yield put(UserStoryActions.getUserStoryFailure());
+    yield put(UserStoryActions.getTasksFailure());
     yield put(AppActions.clearRequest());
     yield call(history.push, '/login');
   }

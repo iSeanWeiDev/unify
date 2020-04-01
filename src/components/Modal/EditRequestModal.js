@@ -10,7 +10,6 @@ function EditRequestModal({
   show,
   data,
   onHide,
-  isDone,
   updateFeature,
 }) {
   const tagList = [
@@ -40,20 +39,22 @@ function EditRequestModal({
 
   const handleUpdateTask = () => {
     if (checked) {
-      let tags= [];
-      tagData.forEach(element => {
-        tags.push(element.id);
-      });
+      // let tags= [];
+      // tagData.forEach(element => {
+      //   tags.push(element.id);
+      // });
+      // const payload = {
+      //   name, description, status, tags
+      // }
       const payload = {
-        name, description, status, tags
+        name, description, status
       }
       payload.id = data.id;
       updateFeature(payload);
-    }
-  }
-    if (isDone) {
       onHide();
     }
+  }
+
 
   return (
     <Modal
@@ -136,12 +137,8 @@ function EditRequestModal({
   );
 }
 
-const mapStateToProps = state => ({
-  isDone: equals(state.userStory.updateStatus, 'done'),
-})
-
 const mapDispatchToProps = dispatch => ({
   updateFeature: payload => dispatch(UserStoryActions.updateFeatureRequest(payload)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditRequestModal);
+export default connect(null, mapDispatchToProps)(EditRequestModal);

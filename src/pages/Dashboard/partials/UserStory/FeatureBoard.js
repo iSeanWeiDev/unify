@@ -10,12 +10,12 @@ import LoadingSpinner from '../../../../components/LoadingSpinner';
 import '../../../../styles/pages/dashboard/user-stories/feature-board.scss';
 
 const FeatureBoard = ({
-  getUserStoryRequest,
-  userStoryData,
+  getTasks,
+  boardData,
   isDone,
 }) => {
   useEffect(() => {
-    getUserStoryRequest();
+    getTasks();
   }, []);
 
   let backLog = [];
@@ -29,8 +29,8 @@ const FeatureBoard = ({
   const [completeData, setCompleteData] = useState([]);
 
   useEffect(() => {
-    if (isDone && userStoryData.length > 0) {
-      userStoryData.forEach(element => {
+    if (isDone && boardData.length > 0) {
+      boardData.forEach(element => {
         switch (element.status) {
           case 'backlog':
             backLog.push(element);
@@ -55,7 +55,7 @@ const FeatureBoard = ({
       setCompleteData(complete);
     }
   
-  }, [userStoryData])
+  }, [boardData])
 
   return (
     <>
@@ -88,12 +88,12 @@ const FeatureBoard = ({
 }
 
 const mapStateToProps = state => ({
-  userStoryData: state.userStory.data,
-  isDone: equals(state.userStory.status, 'done'),
+  boardData: state.userStory.data,
+  isDone: equals(state.userStory.getStatus, 'done'),
 })
 
 const mapDispatchToProps = dispatch => ({
-  getUserStoryRequest: () => dispatch(UserStoryActions.getUserStoryRequest()),
+  getTasks: () => dispatch(UserStoryActions.getTasksRequest()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeatureBoard);

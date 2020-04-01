@@ -16,10 +16,10 @@ const { Types, Creators } = createActions({
   updateFeatureSuccess: ['response'],
   updateFeatureFailure: null,
 
-  // Get user stories
-  getUserStoryRequest: null,
-  getUserStorySuccess: ['response'],
-  getUserStoryFailure: null,
+  // Get task request
+  getTasksRequest: null,
+  getTasksSuccess: ['response'],
+  getTasksFailure: null,
 })
 
 export const UserStoryTypes = Types;

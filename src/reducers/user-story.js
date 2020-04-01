@@ -48,29 +48,28 @@ const updateFeatureSuccess = (state, action) => {
   return state.merge({...state, updateStatus: 'done', data: newStateData})
 }
 const updateFeatureFailure = (state, action) => state.merge({...state, updateStatus: 'error'});
-const clearUpdateStatus = (state, action) => state.merge({...state, updateStatus: ""});
 
-//
-const getUserStoryRequest = (state, action) => {
+// Get task request.
+const getTasksRequest = (state, action) => {
   return state.merge({
     ...state,
-    status: 'pending',
+    getStatus: 'pending',
   });
 }
 
-const getUserStorySuccess = (state, action) => {
+const getTasksSuccess = (state, action) => {
   const data = action.response;
   return state.merge({
     ...state,
-    status: 'done',
+    getStatus: 'done',
     data: data,
   })
 }
 
-const getUserStoryFailure = (state, action) => {
+const getTasksFailure = (state, action) => {
   return state.merge({
     ...state,
-    status: 'error',
+    getStatus: 'error',
   })
 }
 
@@ -91,8 +90,8 @@ export const reducer = createReducer(initialState, {
   [UserStoryTypes.UPDATE_FEATURE_SUCCESS]: updateFeatureSuccess,
   [UserStoryTypes.UPDATE_FEATURE_FAILURE]: updateFeatureFailure,
 
-  // Get user stories
-  [UserStoryTypes.GET_USER_STORY_REQUEST]: getUserStoryRequest,
-  [UserStoryTypes.GET_USER_STORY_SUCCESS]: getUserStorySuccess,
-  [UserStoryTypes.GET_USER_STORY_FAILURE]: getUserStoryFailure,
+  // Get Tasks request.
+  [UserStoryTypes.GET_TASKS_REQUEST]: getTasksRequest,
+  [UserStoryTypes.GET_TASKS_SUCCESS]: getTasksSuccess,
+  [UserStoryTypes.GET_TASKS_FAILURE]: getTasksFailure,
 });

@@ -10,7 +10,6 @@ function AddNewRequestModal({
   show, 
   onHide, 
   createNewFeature,
-  isDone
 }) {
   const tagList = [
     { id:1, label: "Reporting", value: "reporting" },
@@ -34,18 +33,11 @@ function AddNewRequestModal({
       for(let obj of tagData) {
         tags.push(obj.id);
       }
-  
-      const payload = {
-        name, description, tags
-      }
+      const payload = {name, description, tags};
       payload.project_id = 1;
-
       createNewFeature(payload);
+      onHide();
     }
-  }
-
-  if(isDone) {
-    onHide(true);
   }
 
   return (
@@ -119,12 +111,8 @@ function AddNewRequestModal({
   );
 }
 
-const mapStateToProps = state => ({
-  isDone: equals(state.userStory.saveStatus, 'done'),
-})
-
 const mapDispatchToProps = dispatch => ({
   createNewFeature: payload => dispatch(UserStoryActions.createNewFeatureRequest(payload)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddNewRequestModal);
+export default connect(null, mapDispatchToProps)(AddNewRequestModal);
