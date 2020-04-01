@@ -1,61 +1,57 @@
 import React, {useState, useEffect} from 'react';
 import { Row, Col, Modal, Button, Form } from 'react-bootstrap';
 import MultiSelect from "react-multi-select-component";
+import { connect } from 'react-redux';
+import { equals, isEmpty, isNil } from 'ramda';
+import UserStoryActions from '../../actions/user-story';
 import '../../styles/components/modal.scss';
 
-function AddNewRequestModal(props) {
+function AddNewRequestModal({
+  show, 
+  onHide, 
+  createNewFeature,
+  isDone
+}) {
   const tagList = [
-    { label: "Reporting", value: "reporting" },
-    { label: "Admin Setting", value: "adminsetting" },
-    { label: "Others", value: "others" }
+    { id:1, label: "Reporting", value: "reporting" },
+    { id:2, label: "Admin Setting", value: "adminsetting" },
+    { id:3, label: "Others", value: "others" }
   ];
 
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [tags, setTags] = useState("");
+  const [tagData, setTagData] = useState("");
   const [checked, setChecked] = useState(false);
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  }
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  }
-  const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
-  }
-  
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  }
-
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-  }
-
-  const handleTagsChanges = (e) => {
-    setTags(e);
-  }
-
-  const handleCheckBox = (e) => {
-    setChecked(e.target.checked);
-  }
+  const handleNameChange = (e) => setName(e.target.value);
+  const handleDescriptionChange = (e) => setDescription(e.target.value);
+  const handleTagsChanges = (e) => setTagData(e);
+  const handleCheckBox = (e) => setChecked(e.target.checked);
 
   const handleUpdateTask = () => {
-    // console.log(props.hide)
     if (checked) {
-      console.log(title);
-      console.log(description);
-      console.log(tags);
+      let tags = [];
+      for(let obj of tagData) {
+        tags.push(obj.id);
+      }
+  
+      const payload = {
+        name, description, tags
+      }
+      payload.project_id = 1;
+
+      createNewFeature(payload);
     }
+  }
+
+  if(isDone) {
+    onHide(true);
   }
 
   return (
     <Modal
-      {...props}
+      show={show}
+      onHide={() => onHide(false)}
       size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -68,39 +64,12 @@ function AddNewRequestModal(props) {
       <Modal.Body>
         <Form>
           <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Name</Form.Label>
-            <Form.Control 
-              type="text" 
-              placeholder="Input your full name..." 
-              value={name}
-              onChange={handleNameChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Email</Form.Label>
-            <Form.Control 
-              type="email" 
-              placeholder="Input your email..." 
-              value={email}
-              onChange={handleEmailChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Phone</Form.Label>
-            <Form.Control 
-              type="number" 
-              placeholder="Input your phone number..." 
-              value={phone}
-              onChange={handlePhoneChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Label>Task Title</Form.Label>
             <Form.Control 
               type="text" 
               placeholder="Input your request title..." 
-              value={title}
-              onChange={handleTitleChange}
+              value={name}
+              onChange={handleNameChange}
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -116,7 +85,7 @@ function AddNewRequestModal(props) {
             <Form.Label>Add a Tag to Your Request</Form.Label>
             <MultiSelect
               options={tagList}
-              value={tags}
+              value={tagData}
               onChange={handleTagsChanges}
               labelledBy={"Select"}
             />
@@ -150,4 +119,12 @@ function AddNewRequestModal(props) {
   );
 }
 
-export default AddNewRequestModal;
+const mapStateToProps = state => ({
+  isDone: equals(state.userStory.saveStatus, 'done'),
+})
+
+const mapDispatchToProps = dispatch => ({
+  createNewFeature: payload => dispatch(UserStoryActions.createNewFeatureRequest(payload)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddNewRequestModal);

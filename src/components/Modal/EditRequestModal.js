@@ -5,9 +5,9 @@ import '../../styles/components/modal.scss';
 
 function EditRequestModal(props) {
   const tagList = [
-    { label: "Reporting", value: "reporting" },
-    { label: "Admin Setting", value: "adminsetting" },
-    { label: "Others", value: "others" }
+    { id:1, label: "Reporting", value: "reporting" },
+    { id:2, label: "Admin Setting", value: "adminsetting" },
+    { id:3, label: "Others", value: "others" }
   ];
 
   const priorityList = [
@@ -17,46 +17,19 @@ function EditRequestModal(props) {
     {value: 'moved-to-feature-board', display: 'Moved to Feature Board'},
   ];
 
-  const [name, setName] = useState(`${props.data.assignee_user.first_name} ${props.data.assignee_user.last_name}`);
-  const [email, setEmail] = useState(props.data.assignee_user.email);
-  const [phone, setPhone] = useState(props.data.assignee_user.phone);
   const [title, setTitle] = useState(props.data.name);
   const [description, setDescription] = useState(props.data.description);
   const [status, setStatus] = useState(props.data.status);
   const [tags, setTags] = useState(props.data.tags);
   const [checked, setChecked] = useState(false);
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  }
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  }
-  const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
-  }
-  
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  }
-
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-  }
-  const handleStatusChange = (e) => {
-    setStatus(e.target.value)
-  }
-
-  const handleTagsChanges = (e) => {
-    setTags(e);
-  }
-
-  const handleCheckBox = (e) => {
-    setChecked(e.target.checked);
-  }
+  const handleTitleChange = (e) => setTitle(e.target.value);
+  const handleDescriptionChange = (e) => setDescription(e.target.value);
+  const handleStatusChange = (e) => setStatus(e.target.value);
+  const handleTagsChanges = (e) => setTags(e);
+  const handleCheckBox = (e) => setChecked(e.target.checked);
 
   const handleUpdateTask = () => {
-    // console.log(props.hide)
     if (checked) {
       console.log(title);
       console.log(description);
@@ -79,7 +52,7 @@ function EditRequestModal(props) {
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <Form.Group controlId="exampleForm.ControlInput1">
+          {/* <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Label>Name</Form.Label>
             <Form.Control 
               type="text" 
@@ -105,7 +78,7 @@ function EditRequestModal(props) {
               value={phone}
               onChange={handlePhoneChange}
             />
-          </Form.Group>
+          </Form.Group> */}
           <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Label>Task Title</Form.Label>
             <Form.Control 

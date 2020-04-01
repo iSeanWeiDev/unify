@@ -4,7 +4,6 @@ import EditRequestModal from '../Modal/EditRequestModal';
 
 function CustomToggle({ children, eventKey }) {
   const decoratedOnClick = useAccordionToggle(eventKey, e => {
-    console.log('totally custom!', e);
     e.stopPropagation();
   },
   );

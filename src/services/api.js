@@ -21,12 +21,18 @@ const create = (baseURL = config.API_BASE_URL) => {
     timeout: 50000,
   });
   
-  // auth
+  // Auth
   const postLogin = payload => api.post('/auth/login', payload);
+
+  // User stories.
+  const getAllFeatures = () => authMiddleWare(api).get('/feature-requests');
+  const createNewFeature = payload => authMiddleWare(api).post('/feature-requests',payload);
   const getUserStory = () => authMiddleWare(api).get('/user-stories');
 
   return {
     postLogin,
+    getAllFeatures,
+    createNewFeature,
     getUserStory,
   }
 }

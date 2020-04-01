@@ -1,15 +1,20 @@
 import {createActions} from 'reduxsauce';
 
 const { Types, Creators } = createActions({
+  // Get all feature requests
+  getAllFeaturesRequest: null,
+  getAllFeaturesSuccess: ['response'],
+  getAllFeaturesFailure: null,
+
+  // Create new feature request
+  createNewFeatureRequest: ['payload'],
+  createNewFeatureSuccess: ['response'],
+  createNewFeatureFailure: null,
+
   // Get user stories
   getUserStoryRequest: null,
   getUserStorySuccess: ['response'],
   getUserStoryFailure: null,
-
-  // Update user story by id
-  updateUserStoryRequest: ['payload'],
-  updateUserStorySuccess: ['response'],
-  updateUserStoryFailure: null,
 })
 
 export const UserStoryTypes = Types;

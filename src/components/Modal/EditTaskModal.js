@@ -44,7 +44,6 @@ function EditTaskModal(props) {
   }
 
   const handleUpdateTask = () => {
-    // console.log(props.hide)
     if (checked) {
       console.log(title);
       console.log(description);

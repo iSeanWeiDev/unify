@@ -9,6 +9,8 @@ import {
 } from './auth';
 
 import {
+  getAllFeaturesRequest,
+  createNewFeatureRequest,
   getUserStoryRequest,
 } from './user-story'
 
@@ -22,6 +24,8 @@ export default function* root() {
     takeLatest(AuthTypes.LOGIN_REQUEST, loginRequest, api),
 
     // ------------------------- User Story Sagas
+    takeLatest(UserStoryTypes.GET_ALL_FEATURES_REQUEST, getAllFeaturesRequest, api),
+    takeLatest(UserStoryTypes.CREATE_NEW_FEATURE_REQUEST, createNewFeatureRequest, api),
     takeLatest(UserStoryTypes.GET_USER_STORY_REQUEST, getUserStoryRequest, api)
   ])
 }
