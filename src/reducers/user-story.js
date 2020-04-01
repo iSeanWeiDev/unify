@@ -31,7 +31,7 @@ const createNewFeatureSuccess = (state, action) => {
     data: state.data.concat(data),
   })
 }
-const createNewFeatureFailure = (state, action) => state.merge({...state, updateStatus: 'error'});
+const createNewFeatureFailure = (state, action) => state.merge({...state, saveStatus: 'error'});
 
 // Update feature request
 const updateFeatureRequest = (state, action) => state.merge({...state, updateStatus: 'pending'});
@@ -50,13 +50,7 @@ const updateFeatureSuccess = (state, action) => {
 const updateFeatureFailure = (state, action) => state.merge({...state, updateStatus: 'error'});
 
 // Get task request.
-const getTasksRequest = (state, action) => {
-  return state.merge({
-    ...state,
-    getStatus: 'pending',
-  });
-}
-
+const getTasksRequest = (state, action) => state.merge({...state, getStatus: 'pending'});
 const getTasksSuccess = (state, action) => {
   const data = action.response;
   return state.merge({
@@ -65,13 +59,19 @@ const getTasksSuccess = (state, action) => {
     data: data,
   })
 }
+const getTasksFailure = (state, action) => state.merge({...state, getStatus: 'error'});
 
-const getTasksFailure = (state, action) => {
+// Create new task reqest.
+const createNewTaskRequest = (state, action) => state.merge({...state, saveStatus: 'pending'});
+const createNewTaskSuccess = (state, action) => {
+  const data = action.response;
   return state.merge({
     ...state,
-    getStatus: 'error',
+    saveStatus: 'done',
+    data: state.data.concat(data),
   })
 }
+const createNewTaskFailure = (state, action) => state.merge({...state, saveStatus: 'error'});
 
 export const reducer = createReducer(initialState, {
 
@@ -94,4 +94,9 @@ export const reducer = createReducer(initialState, {
   [UserStoryTypes.GET_TASKS_REQUEST]: getTasksRequest,
   [UserStoryTypes.GET_TASKS_SUCCESS]: getTasksSuccess,
   [UserStoryTypes.GET_TASKS_FAILURE]: getTasksFailure,
+
+  // Create new task request.
+  [UserStoryTypes.CREATE_NEW_TASK_REQUEST]: createNewTaskRequest,
+  [UserStoryTypes.CREATE_NEW_TASK_SUCCESS]: createNewTaskSuccess,
+  [UserStoryTypes.CREATE_NEW_TASK_FAILURE]: createNewTaskFailure,
 });

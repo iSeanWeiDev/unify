@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { Row, Col, Modal, Button, Form } from 'react-bootstrap';
 import MultiSelect from "react-multi-select-component";
 import { connect } from 'react-redux';
-import { equals, isEmpty, isNil } from 'ramda';
 import UserStoryActions from '../../actions/user-story';
 import '../../styles/components/modal.scss';
 
@@ -56,7 +55,7 @@ function AddNewRequestModal({
       <Modal.Body>
         <Form>
           <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Task Title</Form.Label>
+            <Form.Label>Feature request title</Form.Label>
             <Form.Control 
               type="text" 
               placeholder="Input your request title..." 
@@ -87,7 +86,7 @@ function AddNewRequestModal({
               <Form.Group controlId="exampleForm.ControlTextarea1">
                 <Form.Check
                   type="checkbox"
-                  nam="checkBox"
+                  name="checkBox"
                   checked={checked}
                   onChange={handleCheckBox}
                   label="Please keep me information for any updates on this request"

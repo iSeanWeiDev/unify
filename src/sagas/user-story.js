@@ -56,7 +56,7 @@ export function* updateFeatureRequest(api, action) {
   }
 }
 
-// Get user story request.
+// Get all tasks request.
 export function* getTasksRequest(api, action) {
   const response = yield api.getTasks();
   if (response.ok) {
@@ -68,6 +68,24 @@ export function* getTasksRequest(api, action) {
     }
   } else {
     yield put(UserStoryActions.getTasksFailure());
+    yield put(AppActions.clearRequest());
+    yield call(history.push, '/login');
+  }
+}
+
+// Create new task request.
+export function* createNewTaskRequest(api, action) {
+  const {payload} = action;
+  const response = yield api.createNewTask(payload);
+  if (response.ok) {
+    if (response.data.data !== "No tenant connection") {
+      yield put(UserStoryActions.createNewTaskSuccess(response.data.data));
+    } else {
+      yield put(AppActions.clearRequest());
+      yield call(history.push, '/login');
+    }
+  } else {
+    yield put(UserStoryActions.createNewTaskFailure());
     yield put(AppActions.clearRequest());
     yield call(history.push, '/login');
   }

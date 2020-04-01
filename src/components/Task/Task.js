@@ -62,7 +62,7 @@ function TaskFooterSection({commentCount, tags, users}) {
             <Image src="/images/assets/icon-message.png" />
             <span>{ commentCount }</span>
             <Image src="/images/assets/icon-tag.png" />
-            <span>{ tags.length }</span>
+            <span>0</span>
           </FormGroup>
         </Col>
         <Col md={6}>

@@ -15,18 +15,23 @@ function Panel ({title, tasks}) {
   };
 
   let imageName = '';
+  let panelName= '';
   switch(title) {
     case 'backlog':
       imageName = 'line-back-log.png';
+      panelName = 'backlog';
       break;
     case 'In Progress':
       imageName = 'line-in-progress.png';
+      panelName = 'in-progress';
       break;
     case 'Review':
       imageName = 'line-review.png';
+      panelName = 'review';
       break;
     case 'Complete':
       imageName = 'line-complete.png';
+      panelName = 'complete';
       break;
     default:
       break;
@@ -60,7 +65,7 @@ function Panel ({title, tasks}) {
             </Button>
             <AddTaskModal 
               show={modalShow}
-              // data={taskData}
+              panel={panelName}
               onHide={() => setModalShow(false)}
             />
           </Card.Footer>
