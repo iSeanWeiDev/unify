@@ -73,6 +73,22 @@ const createNewTaskSuccess = (state, action) => {
 }
 const createNewTaskFailure = (state, action) => state.merge({...state, saveStatus: 'error'});
 
+// Update task request
+const updateTaskRequest = (state, action) => state.merge({...state, updateStatus: 'pending'});
+const updateTaskSuccess = (state, action) => {
+  const data = action.response;
+  let newStateData = [];
+  for(var obj of state.data) {
+    if(obj.id === data.id) {
+      newStateData.push(data);
+    } else {
+      newStateData.push(obj);
+    }
+  }
+  return state.merge({...state, updateStatus: 'done', data: newStateData})
+}
+const updateTaskFailure = (state, action) => state.merge({...state, updateStatus: 'error'});
+
 export const reducer = createReducer(initialState, {
 
   // Get all feature request.
@@ -99,4 +115,9 @@ export const reducer = createReducer(initialState, {
   [UserStoryTypes.CREATE_NEW_TASK_REQUEST]: createNewTaskRequest,
   [UserStoryTypes.CREATE_NEW_TASK_SUCCESS]: createNewTaskSuccess,
   [UserStoryTypes.CREATE_NEW_TASK_FAILURE]: createNewTaskFailure,
+
+  // Update feature request.
+  [UserStoryTypes.UPDATE_TASK_REQUEST]: updateTaskRequest,
+  [UserStoryTypes.UPDATE_TASK_SUCCESS]: updateTaskSuccess,
+  [UserStoryTypes.UPDATE_TASK_FAILURE]: updateTaskFailure,
 });

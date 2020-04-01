@@ -37,7 +37,11 @@ const create = (baseURL = config.API_BASE_URL) => {
   // Feature board
   const getTasks = () => authMiddleWare(api).get('/user-stories');
   const createNewTask = payload => authMiddleWare(api).post('/user-stories', payload);
-
+  const updateTask = payload => {
+    const id = payload.id;
+    delete payload.id;
+    return authMiddleWare(api).put(`/user-stories/${id}`, payload);
+  }
   return {
     postLogin,
     getAllFeatures,
@@ -45,6 +49,7 @@ const create = (baseURL = config.API_BASE_URL) => {
     updateFeature,
     getTasks,
     createNewTask,
+    updateTask,
   }
 }
 

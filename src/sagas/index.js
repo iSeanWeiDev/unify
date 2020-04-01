@@ -14,6 +14,7 @@ import {
   updateFeatureRequest,
   getTasksRequest,
   createNewTaskRequest,
+  updateTaskRequest
 } from './user-story'
 
 const api = API.create();
@@ -31,5 +32,6 @@ export default function* root() {
     takeLatest(UserStoryTypes.UPDATE_FEATURE_REQUEST, updateFeatureRequest, api),
     takeLatest(UserStoryTypes.GET_TASKS_REQUEST, getTasksRequest, api),
     takeLatest(UserStoryTypes.CREATE_NEW_TASK_REQUEST, createNewTaskRequest, api),
+    takeLatest(UserStoryTypes.UPDATE_TASK_REQUEST, updateTaskRequest, api),
   ])
 }

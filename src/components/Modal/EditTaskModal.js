@@ -1,11 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import { Row, Col, Modal, Button, Form } from 'react-bootstrap';
 import MultiSelect from "react-multi-select-component";
-// import { connect } from 'react-redux';
-// import { equals, isEmpty, isNil } from 'ramda';
+import { connect } from 'react-redux';
+import UserStoryActions from '../../actions/user-story';
+import { equals, isEmpty, isNil } from 'ramda';
 import '../../styles/components/modal.scss';
 
-function EditTaskModal(props) {
+function EditTaskModal({
+  show,
+  onHide,
+  data,
+  updateTask
+}) {
   const tagList = [
     { label: "Reporting", value: "reporting" },
     { label: "Admin Setting", value: "adminsetting" },
@@ -18,43 +24,33 @@ function EditTaskModal(props) {
     {value: 'high', display: 'High'},
   ];
 
-  const [title, setTitle] = useState(props.data.name);
-  const [description, setDescription] = useState(props.data.description);
-  const [priority, setPriority] = useState(props.data.priority);
-  const [tags, setTags] = useState(props.data.tags);
+  const [name, setName] = useState(data.name);
+  const [description, setDescription] = useState(data.description);
+  const [priority, setPriority] = useState(data.priority);
+  const [tags, setTags] = useState(data.tags);
   const [checked, setChecked] = useState(false);
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  }
-
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-  }
-  const handlePriorityChange = (e) => {
-    setPriority(e.target.value)
-  }
-
-  const handleTagsChanges = (e) => {
-    setTags(e);
-  }
-
-  const handleCheckBox = (e) => {
-    setChecked(e.target.checked);
-  }
+  const handleNameChange = (e) => setName(e.target.value);
+  const handleDescriptionChange = (e) => setDescription(e.target.value);
+  const handlePriorityChange = (e) => setPriority(e.target.value);
+  const handleTagsChanges = (e) => setTags(e);
+  const handleCheckBox = (e) => setChecked(e.target.checked);
 
   const handleUpdateTask = () => {
     if (checked) {
-      console.log(title);
-      console.log(description);
-      console.log(priority);
-      console.log(tags);
+      const payload ={
+        name, description, priority
+      }
+      payload.id = data.id;
+      updateTask(payload);
+      onHide()
     }
   }
 
   return (
     <Modal
-      {...props}
+      show={show}
+      onHide={onHide}
       size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -71,8 +67,8 @@ function EditTaskModal(props) {
             <Form.Control 
               type="text" 
               placeholder="Input your task title..." 
-              value={title}
-              onChange={handleTitleChange}
+              value={name}
+              onChange={handleNameChange}
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -132,4 +128,8 @@ function EditTaskModal(props) {
   );
 }
 
-export default EditTaskModal;
+const mapDispatchToProps = dispatch => ({
+  updateTask: payload => dispatch(UserStoryActions.updateTaskRequest(payload)),
+});
+
+export default connect(null, mapDispatchToProps)(EditTaskModal);

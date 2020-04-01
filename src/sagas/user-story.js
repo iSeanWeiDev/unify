@@ -90,3 +90,22 @@ export function* createNewTaskRequest(api, action) {
     yield call(history.push, '/login');
   }
 }
+
+
+// Update feature request.
+export function* updateTaskRequest(api, action) {
+  const {payload} = action;
+  const response = yield api.updateTask(payload);
+  if (response.ok) {
+    if (response.data.data !== "No tenant connection") {
+      yield put(UserStoryActions.updateTaskSuccess(response.data.data));
+    } else {
+      yield put(AppActions.clearRequest());
+      yield call(history.push, '/login');
+    }
+  } else {
+    yield put(UserStoryActions.updateTaskFailure());
+    yield put(AppActions.clearRequest());
+    yield call(history.push, '/login');
+  }
+}
