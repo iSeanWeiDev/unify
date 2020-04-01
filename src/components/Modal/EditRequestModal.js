@@ -1,9 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import { Row, Col, Modal, Button, Form } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { equals, isEmpty, isNil } from 'ramda';
+import UserStoryActions from '../../actions/user-story';
 import MultiSelect from "react-multi-select-component";
 import '../../styles/components/modal.scss';
 
-function EditRequestModal(props) {
+function EditRequestModal({
+  show,
+  data,
+  onHide,
+  isDone,
+  updateFeature,
+}) {
   const tagList = [
     { id:1, label: "Reporting", value: "reporting" },
     { id:2, label: "Admin Setting", value: "adminsetting" },
@@ -12,35 +21,44 @@ function EditRequestModal(props) {
 
   const priorityList = [
     {value: 'inbox', display: 'Inbox'},
-    {value: 'up-next', display: 'Up Next'},
-    {value: 'in-review', display: 'In Review'},
-    {value: 'moved-to-feature-board', display: 'Moved to Feature Board'},
+    {value: 'next', display: 'Up Next'},
+    {value: 'review', display: 'In Review'},
+    {value: 'board', display: 'Moved to Feature Board'},
   ];
 
-  const [title, setTitle] = useState(props.data.name);
-  const [description, setDescription] = useState(props.data.description);
-  const [status, setStatus] = useState(props.data.status);
-  const [tags, setTags] = useState(props.data.tags);
+  const [name, setName] = useState(data.name);
+  const [description, setDescription] = useState(data.description);
+  const [status, setStatus] = useState(data.status);
+  const [tagData, setTagData] = useState(data.tags);
   const [checked, setChecked] = useState(false);
 
-  const handleTitleChange = (e) => setTitle(e.target.value);
+  const handleNameChange = (e) => setName(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
   const handleStatusChange = (e) => setStatus(e.target.value);
-  const handleTagsChanges = (e) => setTags(e);
+  const handleTagDataChanges = (e) => setTagData(e);
   const handleCheckBox = (e) => setChecked(e.target.checked);
 
   const handleUpdateTask = () => {
     if (checked) {
-      console.log(title);
-      console.log(description);
-      console.log(status);
-      console.log(tags);
+      let tags= [];
+      tagData.forEach(element => {
+        tags.push(element.id);
+      });
+      const payload = {
+        name, description, status, tags
+      }
+      payload.id = data.id;
+      updateFeature(payload);
     }
   }
+    if (isDone) {
+      onHide();
+    }
 
   return (
     <Modal
-      {...props}
+      show={show}
+      onHide={onHide}
       size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -52,40 +70,13 @@ function EditRequestModal(props) {
       </Modal.Header>
       <Modal.Body>
         <Form>
-          {/* <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Name</Form.Label>
-            <Form.Control 
-              type="text" 
-              placeholder="Input your full name..." 
-              value={name}
-              onChange={handleNameChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Email</Form.Label>
-            <Form.Control 
-              type="email" 
-              placeholder="Input your email..." 
-              value={email}
-              onChange={handleEmailChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Phone</Form.Label>
-            <Form.Control 
-              type="number" 
-              placeholder="Input your phone number..." 
-              value={phone}
-              onChange={handlePhoneChange}
-            />
-          </Form.Group> */}
-          <Form.Group controlId="exampleForm.ControlInput1">
+           <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Label>Task Title</Form.Label>
             <Form.Control 
               type="text" 
               placeholder="Input your request title..." 
-              value={title}
-              onChange={handleTitleChange}
+              value={name}
+              onChange={handleNameChange}
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -111,8 +102,8 @@ function EditRequestModal(props) {
             <Form.Label>Add a Tag to Your Request</Form.Label>
             <MultiSelect
               options={tagList}
-              value={tags}
-              onChange={handleTagsChanges}
+              value={tagData}
+              onChange={handleTagDataChanges}
               labelledBy={"Select"}
             />
           </Form.Group>
@@ -145,4 +136,12 @@ function EditRequestModal(props) {
   );
 }
 
-export default EditRequestModal;
+const mapStateToProps = state => ({
+  isDone: equals(state.userStory.updateStatus, 'done'),
+})
+
+const mapDispatchToProps = dispatch => ({
+  updateFeature: payload => dispatch(UserStoryActions.updateFeatureRequest(payload)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditRequestModal);

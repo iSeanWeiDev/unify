@@ -11,6 +11,7 @@ import {
 import {
   getAllFeaturesRequest,
   createNewFeatureRequest,
+  updateFeatureRequest,
   getUserStoryRequest,
 } from './user-story'
 
@@ -26,6 +27,7 @@ export default function* root() {
     // ------------------------- User Story Sagas
     takeLatest(UserStoryTypes.GET_ALL_FEATURES_REQUEST, getAllFeaturesRequest, api),
     takeLatest(UserStoryTypes.CREATE_NEW_FEATURE_REQUEST, createNewFeatureRequest, api),
+    takeLatest(UserStoryTypes.UPDATE_FEATURE_REQUEST, updateFeatureRequest, api),
     takeLatest(UserStoryTypes.GET_USER_STORY_REQUEST, getUserStoryRequest, api)
   ])
 }

@@ -5,11 +5,11 @@ import { UserStoryTypes } from '../actions/user-story';
 const initialState = Immutable({
   getStatus: "",
   saveStatus: "",
+  updateStatus: "",
   data: "",
 });
 
 // Get All Feature Request.
-
 const getAllFeaturesRequest = (state, action) => state.merge({...state, getStatus: 'pending'});
 const getAllFeaturesSuccess = (state, action) => {
   const data = action.response;
@@ -31,7 +31,24 @@ const createNewFeatureSuccess = (state, action) => {
     data: state.data.concat(data),
   })
 }
-const createNewFeatureFailure = (state, action) => state.merge({...state, saveStatus: 'error'});
+const createNewFeatureFailure = (state, action) => state.merge({...state, updateStatus: 'error'});
+
+// Update feature request
+const updateFeatureRequest = (state, action) => state.merge({...state, updateStatus: 'pending'});
+const updateFeatureSuccess = (state, action) => {
+  const data = action.response;
+  let newStateData = [];
+  for(var obj of state.data) {
+    if(obj.id === data.id) {
+      newStateData.push(data);
+    } else {
+      newStateData.push(obj);
+    }
+  }
+  return state.merge({...state, updateStatus: 'done', data: newStateData})
+}
+const updateFeatureFailure = (state, action) => state.merge({...state, updateStatus: 'error'});
+const clearUpdateStatus = (state, action) => state.merge({...state, updateStatus: ""});
 
 //
 const getUserStoryRequest = (state, action) => {
@@ -58,6 +75,7 @@ const getUserStoryFailure = (state, action) => {
 }
 
 export const reducer = createReducer(initialState, {
+
   // Get all feature request.
   [UserStoryTypes.GET_ALL_FEATURES_REQUEST]: getAllFeaturesRequest,
   [UserStoryTypes.GET_ALL_FEATURES_SUCCESS]: getAllFeaturesSuccess,
@@ -67,6 +85,11 @@ export const reducer = createReducer(initialState, {
   [UserStoryTypes.CREATE_NEW_FEATURE_REQUEST]: createNewFeatureRequest,
   [UserStoryTypes.CREATE_NEW_FEATURE_SUCCESS]: createNewFeatureSuccess,
   [UserStoryTypes.CREATE_NEW_FEATURE_FAILURE]: createNewFeatureFailure,
+
+  // Update feature request.
+  [UserStoryTypes.UPDATE_FEATURE_REQUEST]: updateFeatureRequest,
+  [UserStoryTypes.UPDATE_FEATURE_SUCCESS]: updateFeatureSuccess,
+  [UserStoryTypes.UPDATE_FEATURE_FAILURE]: updateFeatureFailure,
 
   // Get user stories
   [UserStoryTypes.GET_USER_STORY_REQUEST]: getUserStoryRequest,

@@ -34,19 +34,19 @@ function FeatureRequest({
   };
 
   useEffect(() => {
-    if (isDone && featureData.length > 0 && featureData !== "No tenant connection") {
+    if (isDone && featureData.length > 0) {
       featureData.forEach(element => {
         switch (element.status) {
           case 'inbox':
             inbox.push(element);
             break;
-          case 'up-next': 
+          case 'next': 
             upNext.push(element);
             break;
-          case  'in-review':
+          case 'review':
             inReview.push(element);
             break;
-          case 'moved-to-feature-board':
+          case 'board':
             movedToFeatureBoard.push(element);
             break;
           default:

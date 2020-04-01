@@ -29,7 +29,7 @@ const FeatureBoard = ({
   const [completeData, setCompleteData] = useState([]);
 
   useEffect(() => {
-    if (isDone && userStoryData.length > 0 && userStoryData !== "No tenant connection") {
+    if (isDone && userStoryData.length > 0) {
       userStoryData.forEach(element => {
         switch (element.status) {
           case 'backlog':

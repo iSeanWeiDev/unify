@@ -26,13 +26,19 @@ const create = (baseURL = config.API_BASE_URL) => {
 
   // User stories.
   const getAllFeatures = () => authMiddleWare(api).get('/feature-requests');
-  const createNewFeature = payload => authMiddleWare(api).post('/feature-requests',payload);
+  const createNewFeature = payload => authMiddleWare(api).post('/feature-requests', payload);
+  const updateFeature = payload => {
+    const id = payload.id;
+    delete payload.id;
+    return authMiddleWare(api).put(`/feature-requests/${id}`, payload);
+  }
   const getUserStory = () => authMiddleWare(api).get('/user-stories');
 
   return {
     postLogin,
     getAllFeatures,
     createNewFeature,
+    updateFeature,
     getUserStory,
   }
 }

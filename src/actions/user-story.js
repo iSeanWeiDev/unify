@@ -1,6 +1,6 @@
 import {createActions} from 'reduxsauce';
 
-const { Types, Creators } = createActions({
+const { Types, Creators } = createActions({  
   // Get all feature requests
   getAllFeaturesRequest: null,
   getAllFeaturesSuccess: ['response'],
@@ -10,6 +10,11 @@ const { Types, Creators } = createActions({
   createNewFeatureRequest: ['payload'],
   createNewFeatureSuccess: ['response'],
   createNewFeatureFailure: null,
+
+  // Update featrure request
+  updateFeatureRequest: ['payload'],
+  updateFeatureSuccess: ['response'],
+  updateFeatureFailure: null,
 
   // Get user stories
   getUserStoryRequest: null,
