@@ -81,6 +81,20 @@
         font-size: 42px;
         margin-left: -3.5px;
       }
+      @media(max-width: 700px) {
+        position: fixed;
+      }
+    }
+
+    
+  }
+}
+@media(max-width: 700px) {
+  .feature-request {
+    padding: 0;
+    .row {
+      display: flex;
+      justify-content: center;
     }
   }
 }

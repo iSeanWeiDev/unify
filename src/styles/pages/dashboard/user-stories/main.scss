@@ -46,3 +46,13 @@
     }
   }
 }
+
+@media(max-width: 700px) {
+  .user-stories {
+    margin-top: 80px;
+    padding: 0;
+    .title{
+      text-align: center;
+    }
+  }
+}

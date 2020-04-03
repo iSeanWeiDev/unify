@@ -57,3 +57,13 @@
     }
   }
 }
+
+@media(max-width: 700px) {
+  .feature-board {
+    padding: 0;
+    .row {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

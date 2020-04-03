@@ -33,6 +33,11 @@
         margin: 5px;
       }
     }
+    @media(max-width: 700px) {
+      .col-md-6 {
+        width: 50%;
+      }
+    }
   }
 }
 
