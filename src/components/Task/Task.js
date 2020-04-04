@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import '../../styles/components/task.scss';
-import TaskModal from '../Modal/TaskModal';
+import UserStoryModal from '../Modal/UserStoryModal';
 import { 
   Row, 
   Col, 
@@ -77,7 +77,7 @@ function TaskFooterSection({commentCount, tags, users}) {
   )
 }
 
-function Task ({taskData}) {
+function UserStory ({taskData}) {
   const [modalShow, setModalShow] = useState(false);
   
   const handleShow = (e, data) => {
@@ -101,7 +101,7 @@ function Task ({taskData}) {
         </FormGroup>
       </div>
 
-      <TaskModal
+      <UserStoryModal
         show={modalShow}
         task={taskData}
         onHide={() => setModalShow(false)}
@@ -110,4 +110,4 @@ function Task ({taskData}) {
   )
 }
 
-export default Task;
+export default UserStory;

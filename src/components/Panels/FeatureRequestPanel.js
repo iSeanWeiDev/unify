@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {FormGroup, Card, Accordion, Button, useAccordionToggle} from 'react-bootstrap';
-import EditRequestModal from '../Modal/EditRequestModal';
+// import EditRequestModal from '../Modal/EditRequestModal';
+import FeatureRequestModal from '../Modal/FeatureRequestModal';
 
 function CustomToggle({ children, eventKey }) {
   const decoratedOnClick = useAccordionToggle(eventKey, e => {
@@ -59,7 +60,7 @@ function FeatureRequestPanel({title, requests}) {
             })}
 
             {editModalShow && (
-              <EditRequestModal
+              <FeatureRequestModal
                 show={editModalShow}
                 data={editModalData}
                 onHide={() => setEditModalShow(false)}

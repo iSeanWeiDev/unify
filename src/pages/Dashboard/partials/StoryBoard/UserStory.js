@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {FormGroup, Row} from 'react-bootstrap';
-import {ChevronDown} from 'react-bootstrap-icons';
+import { Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { equals, isEmpty, isNil } from 'ramda';
+import { equals } from 'ramda';
 import UserStoryPanel from '../../../../components/Panels/UserStoryPanel';
 import UserStoryActions from '../../../../actions/userStory';
 import LoadingSpinner from '../../../../components/LoadingSpinner';
@@ -10,12 +9,12 @@ import LoadingSpinner from '../../../../components/LoadingSpinner';
 import '../../../../styles/pages/dashboard/story-board/user-story.scss';
 
 const UserStory = ({
-  getTasks,
-  boardData,
+  getAllUserStories,
+  userStoryData,
   isDone,
 }) => {
   useEffect(() => {
-    getTasks();
+    getAllUserStories();
   }, []);
 
   let backLog = [];
@@ -29,8 +28,8 @@ const UserStory = ({
   const [completeData, setCompleteData] = useState([]);
 
   useEffect(() => {
-    if (isDone && boardData.length > 0) {
-      boardData.forEach(element => {
+    if (isDone && userStoryData.length > 0) {
+      userStoryData.forEach(element => {
         switch (element.status) {
           case 'backlog':
             backLog.push(element);
@@ -55,7 +54,7 @@ const UserStory = ({
       setCompleteData(complete);
     }
   
-  }, [boardData])
+  }, [userStoryData])
 
   return (
     <>
@@ -88,12 +87,12 @@ const UserStory = ({
 }
 
 const mapStateToProps = state => ({
-  boardData: state.userStory.data,
+  userStoryData: state.userStory.data,
   isDone: equals(state.userStory.getStatus, 'done'),
 })
 
 const mapDispatchToProps = dispatch => ({
-  getTasks: () => dispatch(UserStoryActions.getTasksRequest()),
+  getAllUserStories: () => dispatch(UserStoryActions.getAllUserStoryRequest()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserStory);

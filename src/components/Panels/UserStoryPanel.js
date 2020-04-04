@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {FormGroup, Image, Card, Button} from 'react-bootstrap';
 import TaskComponent from '../Task/Task';
-import AddTaskModal from '../Modal/AddTaskModal';
-import TaskModal from '../Modal/TaskModal';
+import UserStoryModal from '../Modal/UserStoryModal';
 
 function UserStoryPanel ({title, tasks}) {
   const [modalShow, setModalShow] = useState(false);
@@ -59,7 +58,7 @@ function UserStoryPanel ({title, tasks}) {
               Add task
               <Image src="/images/assets/icon-btn-plus.png" />
             </Button>
-            <TaskModal 
+            <UserStoryModal 
               show={modalShow}
               defaultStatus={panel}
               onHide={() => setModalShow(false)}

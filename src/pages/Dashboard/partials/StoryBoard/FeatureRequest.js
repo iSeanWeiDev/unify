@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {Row, Button} from 'react-bootstrap';
 import {Plus} from 'react-bootstrap-icons';
 import { connect } from 'react-redux';
-import { equals, isEmpty, isNil } from 'ramda';
+import { equals } from 'ramda';
 import FeatureRequestPanel from '../../../../components/Panels/FeatureRequestPanel'
-import AddNewRequestModal from '../../../../components/Modal/AddNewRequestModal';
-import UserStoryActions from '../../../../actions/featureRequest';
+import FeatureRequestModal from '../../../../components/Modal/FeatureRequestModal';
+import FeatureRequestActions from '../../../../actions/featureRequest';
 import LoadingSpinner from '../../../../components/LoadingSpinner';
 import '../../../../styles/pages/dashboard/story-board/feature-request.scss';
 
@@ -91,9 +91,9 @@ function FeatureRequest({
               <Plus />
             </Button>
           </div>
-          <AddNewRequestModal
+          <FeatureRequestModal
             show={addNewRequestModalShow}
-            // data={taskData}
+            // defaultStatus={panel}
             onHide={() => setAddNewRequestModalShow(false)}
           />
         </div>
@@ -103,12 +103,12 @@ function FeatureRequest({
 }
 
 const mapStateToProps = state => ({
-  featureData: state.userStory.data,
-  isDone: equals(state.userStory.getStatus, 'done'),
+  featureData: state.featureRequest.data,
+  isDone: equals(state.featureRequest.getStatus, 'done'),
 })
 
 const mapDispatchToProps = dispatch => ({
-  getAllFeatures: () => dispatch(UserStoryActions.getAllFeaturesRequest()),
+  getAllFeatures: () => dispatch(FeatureRequestActions.getAllFeaturesRequest()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeatureRequest);

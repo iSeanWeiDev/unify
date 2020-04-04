@@ -23,7 +23,6 @@ const create = (baseURL = config.API_BASE_URL) => {
   // Auth
   const postLogin = payload => api.post('/auth/login', payload);
 
-  // User stories.
   // Feature request
   const getAllFeatures = () => authMiddleWare(api).get('/feature-requests');
   const createNewFeature = payload => authMiddleWare(api).post('/feature-requests', payload);
@@ -33,7 +32,7 @@ const create = (baseURL = config.API_BASE_URL) => {
     return authMiddleWare(api).put(`/feature-requests/${id}`, payload);
   }
 
-  // Feature board
+  // User stories
   const getAllUserStories = () => authMiddleWare(api).get('/user-stories');
   const createNewUserStory = payload => authMiddleWare(api).post('/user-stories', payload);
   const updateUserStory = payload => {
