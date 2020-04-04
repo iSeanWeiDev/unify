@@ -77,7 +77,7 @@ function TaskFooterSection({commentCount, tags, users}) {
   )
 }
 
-function UserStory ({taskData}) {
+function Task ({taskData}) {
   const [modalShow, setModalShow] = useState(false);
   
   const handleShow = (e, data) => {
@@ -110,4 +110,4 @@ function UserStory ({taskData}) {
   )
 }
 
-export default UserStory;
+export default Task;
