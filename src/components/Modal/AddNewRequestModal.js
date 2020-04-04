@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Row, Col, Modal, Button, Form } from 'react-bootstrap';
 import MultiSelect from "react-multi-select-component";
 import { connect } from 'react-redux';
-import UserStoryActions from '../../actions/user-story';
+import UserStoryActions from '../../actions/userStory';
 import '../../styles/components/modal.scss';
 
 function AddNewRequestModal({

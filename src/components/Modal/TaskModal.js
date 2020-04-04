@@ -5,7 +5,7 @@ import TextArea from '../Form/TextArea';
 import Select from '../Form/Select';
 import TagSelect  from '../Form/TagSelect';
 import { connect } from 'react-redux';
-import UserStoryActions from '../../actions/user-story';
+import UserStoryActions from '../../actions/userStory';
 import { equals } from 'ramda';
 import '../../styles/components/modal.scss';
 

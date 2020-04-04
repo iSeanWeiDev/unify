@@ -3,28 +3,28 @@ import { withRouter, useHistory } from 'react-router-dom';
 import {FormGroup, Dropdown, DropdownButton} from 'react-bootstrap';
 import {ChevronDown} from 'react-bootstrap-icons';
 
-import FeatureBoard from './FeatureBoard';
+import UserStory from './UserStory';
 import FeatureRequest from './FeatureRequest';
-import '../../../../styles/pages/dashboard/user-stories/main.scss';
+import '../../../../styles/pages/dashboard/story-board/main.scss';
 
-function UserStory ({
+function StoryBoard ({
   match
 }) {
   const titles = [
     {label: "Feature Request", value: "feature-request"},
-    {label: "Feature Board", value: "feature-board"}
+    {label: "Feature Board", value: "user-stories"}
   ];
   const featureID = match.params.featureID;
 
   const history = useHistory();
 
   const handleDropdownChange = title => {
-    history.push(`/dashboard/user-stories/${title.value}`);
+    history.push(`/dashboard/story-board/${title.value}`);
   };
 
   function getTitle() {
     if (featureID === 'feature-request') return 'Feature Request';
-    if (featureID === 'feature-board') return 'Feature Board';
+    if (featureID === 'user-stories') return 'Feature Board';
     return 'Feature Request';
   }
 
@@ -50,8 +50,8 @@ function UserStory ({
         </FormGroup>
       </div>
       <div className="content">
-        {featureID === "feature-board" ? (
-          <FeatureBoard />
+        {featureID === "user-stories" ? (
+          <UserStory />
         ) : (
           <FeatureRequest />
         )}
@@ -60,4 +60,4 @@ function UserStory ({
   )
 }
 
-export default withRouter(UserStory);
+export default withRouter(StoryBoard);

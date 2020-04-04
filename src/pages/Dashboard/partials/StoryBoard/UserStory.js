@@ -3,13 +3,13 @@ import {FormGroup, Row} from 'react-bootstrap';
 import {ChevronDown} from 'react-bootstrap-icons';
 import { connect } from 'react-redux';
 import { equals, isEmpty, isNil } from 'ramda';
-import FeatureBoardPanel from '../../../../components/Panels/FeatureBoardPanel';
-import UserStoryActions from '../../../../actions/user-story';
+import UserStoryPanel from '../../../../components/Panels/UserStoryPanel';
+import UserStoryActions from '../../../../actions/userStory';
 import LoadingSpinner from '../../../../components/LoadingSpinner';
 
-import '../../../../styles/pages/dashboard/user-stories/feature-board.scss';
+import '../../../../styles/pages/dashboard/story-board/user-story.scss';
 
-const FeatureBoard = ({
+const UserStory = ({
   getTasks,
   boardData,
   isDone,
@@ -64,19 +64,19 @@ const FeatureBoard = ({
       ) : (
         <div className="feature-board">
           <Row>
-            <FeatureBoardPanel 
+            <UserStoryPanel 
               title="backlog"
               tasks={backlogData}
             />
-            <FeatureBoardPanel 
+            <UserStoryPanel 
               title="In Progress"
               tasks={inprogressData}
             />
-            <FeatureBoardPanel 
+            <UserStoryPanel 
               title="Review"
               tasks={reviewData}
             />
-            <FeatureBoardPanel 
+            <UserStoryPanel 
               title="Complete"
               tasks={completeData}
             />
@@ -96,4 +96,4 @@ const mapDispatchToProps = dispatch => ({
   getTasks: () => dispatch(UserStoryActions.getTasksRequest()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeatureBoard);
+export default connect(mapStateToProps, mapDispatchToProps)(UserStory);

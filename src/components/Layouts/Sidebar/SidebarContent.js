@@ -17,10 +17,10 @@ function SidebarContent({
       <Link to="/dashboard">
         <FormGroup className="tabs">
           <div 
-            className={tabStatus === "user-stories" || tabStatus === undefined ? "text-center items active" : "text-center items"}
+            className={tabStatus === "story-board" || tabStatus === undefined ? "text-center items active" : "text-center items"}
             onClick={()=>handleSelectTab(0)}>
             <Image 
-              src={`/images/assets/${tabStatus === "user-stories" || tabStatus === undefined ? 'icon-selected-home.png' : 'icon-home.png'}`}
+              src={`/images/assets/${tabStatus === "story-board" || tabStatus === undefined ? 'icon-selected-home.png' : 'icon-home.png'}`}
             />
           </div>
         </FormGroup>

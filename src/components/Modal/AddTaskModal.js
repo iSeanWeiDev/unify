@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Row,Col,Modal,Button,Form} from 'react-bootstrap';
 import { connect } from 'react-redux';
-import UserStoryActions from '../../actions/user-story';
+import UserStoryActions from '../../actions/userStory';
 import TagSelect  from '../Form/TagSelect';
 import '../../styles/components/modal.scss';
 

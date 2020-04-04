@@ -15,22 +15,7 @@ const { Types, Creators } = createActions({
   updateFeatureRequest: ['payload'],
   updateFeatureSuccess: ['response'],
   updateFeatureFailure: null,
+});
 
-  // Get task request
-  getTasksRequest: null,
-  getTasksSuccess: ['response'],
-  getTasksFailure: null,
-
-  // Create new task request.
-  createNewTaskRequest: ['payload'],
-  createNewTaskSuccess: ['response'],
-  createNewTaskFailure: null,
-
-  // Update task request
-  updateTaskRequest: ['payload'],
-  updateTaskSuccess: ['response'],
-  updateTaskFailure: null,
-})
-
-export const UserStoryTypes = Types;
+export const FeatureRequestTypes = Types;
 export default Creators;

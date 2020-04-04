@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Row, Col, Modal, Button, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { equals, isEmpty, isNil } from 'ramda';
-import UserStoryActions from '../../actions/user-story';
+import UserStoryActions from '../../actions/userStory';
 import MultiSelect from "react-multi-select-component";
 import '../../styles/components/modal.scss';
 

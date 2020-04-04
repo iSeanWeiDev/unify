@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import UserStory from './partials/UserStory';
+import StoryBoard from './partials/StoryBoard';
 import Example2 from './partials/Example2';
 import Example3 from './partials/Example3';
 import UserAdministration from './partials/UserAdministation';
@@ -11,10 +11,10 @@ function Dashboard({
 }) {
   const tabStatus = match.params.tabID;
   const dashboardElement = () => {
-    let element = <UserStory />;
+    let element = <StoryBoard />;
     switch(tabStatus) {
-      case 'user-stories': 
-        element = <UserStory />
+      case 'story-board': 
+        element = <StoryBoard />
         break;
       case 'example2':
         element = <Example2 />
@@ -26,7 +26,7 @@ function Dashboard({
         element = <UserAdministration />
         break;
       default:
-        element = <UserStory />
+        element = <StoryBoard />
         break;
     }
     return element;

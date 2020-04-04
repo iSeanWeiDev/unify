@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { equals, isEmpty, isNil } from 'ramda';
 import FeatureRequestPanel from '../../../../components/Panels/FeatureRequestPanel'
 import AddNewRequestModal from '../../../../components/Modal/AddNewRequestModal';
-import UserStoryActions from '../../../../actions/user-story';
+import UserStoryActions from '../../../../actions/featureRequest';
 import LoadingSpinner from '../../../../components/LoadingSpinner';
-import '../../../../styles/pages/dashboard/user-stories/feature-request.scss';
+import '../../../../styles/pages/dashboard/story-board/feature-request.scss';
 
 function FeatureRequest({
   getAllFeatures,

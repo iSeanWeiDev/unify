@@ -2,7 +2,6 @@ import apisauce from 'apisauce';
 import {store} from '../reducers';
 import config from '../config';
 
-
 const authMiddleWare = (api) => {
   const appState = store.getState().app;
   const token = appState.data.token_type + ' ' +appState.data.access_token;
@@ -35,9 +34,9 @@ const create = (baseURL = config.API_BASE_URL) => {
   }
 
   // Feature board
-  const getTasks = () => authMiddleWare(api).get('/user-stories');
-  const createNewTask = payload => authMiddleWare(api).post('/user-stories', payload);
-  const updateTask = payload => {
+  const getAllUserStories = () => authMiddleWare(api).get('/user-stories');
+  const createNewUserStory = payload => authMiddleWare(api).post('/user-stories', payload);
+  const updateUserStory = payload => {
     const id = payload.id;
     delete payload.id;
     return authMiddleWare(api).put(`/user-stories/${id}`, payload);
@@ -51,9 +50,9 @@ const create = (baseURL = config.API_BASE_URL) => {
     getAllFeatures,
     createNewFeature,
     updateFeature,
-    getTasks,
-    createNewTask,
-    updateTask,
+    getAllUserStories,
+    createNewUserStory,
+    updateUserStory,
     getAllTags,
     createNewTag,
   }

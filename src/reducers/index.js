@@ -17,7 +17,8 @@ const history = createBrowserHistory();
 const reducers = combineReducers({
   app: require('./app').reducer,
   auth: require('./auth').reducer,
-  userStory: require('./user-story').reducer,
+  userStory: require('./userStory').reducer,
+  featureRequest: require('./featureRequest').reducer,
   tag: require('./tag').reducer,
 })
 const persistedReducer = persistReducer(persistConfig, reducers)

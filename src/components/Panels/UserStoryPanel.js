@@ -1,15 +1,10 @@
 import React, {useState} from 'react';
-import {
-  FormGroup, 
-  Image, 
-  Card, 
-  Button
-} from 'react-bootstrap';
+import {FormGroup, Image, Card, Button} from 'react-bootstrap';
 import TaskComponent from '../Task/Task';
 import AddTaskModal from '../Modal/AddTaskModal';
 import TaskModal from '../Modal/TaskModal';
 
-function Panel ({title, tasks}) {
+function UserStoryPanel ({title, tasks}) {
   const [modalShow, setModalShow] = useState(false);
   const handleShow = (e, data) => {
     setModalShow(true)
@@ -50,7 +45,7 @@ function Panel ({title, tasks}) {
             <Image src="/images/assets/icon-pencil.png" />
             <span className="icon-span">  </span> 
           </Card.Title>
-          {tasks.map(function (task, index) {
+          {tasks.map((task, index) => {
             return (
               <TaskComponent taskData={task} key={index}/>
             )
@@ -76,4 +71,4 @@ function Panel ({title, tasks}) {
   )
 }
 
-export default Panel;
+export default UserStoryPanel;
