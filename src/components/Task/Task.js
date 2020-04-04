@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import '../../styles/components/task.scss';
-import EditTaskModal from '../Modal/EditTaskModal';
+import TaskModal from '../Modal/TaskModal';
 import { 
   Row, 
   Col, 
@@ -101,9 +101,9 @@ function Task ({taskData}) {
         </FormGroup>
       </div>
 
-      <EditTaskModal
+      <TaskModal
         show={modalShow}
-        data={taskData}
+        task={taskData}
         onHide={() => setModalShow(false)}
       />
     </>

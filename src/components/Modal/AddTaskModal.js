@@ -1,44 +1,48 @@
 import React, {useState} from 'react';
 import {Row,Col,Modal,Button,Form} from 'react-bootstrap';
-import MultiSelect from "react-multi-select-component";
 import { connect } from 'react-redux';
 import UserStoryActions from '../../actions/user-story';
+import TagSelect  from '../Form/TagSelect';
 import '../../styles/components/modal.scss';
 
 function EditTaskModal({show, panel, onHide, createNewTask }) {
-  const tagList = [
-    { label: "Reporting", value: "reporting" },
-    { label: "Admin Setting", value: "adminsetting" },
-    { label: "Others", value: "others" }
-  ];
-
   const priorityList = [
     {value: 'low', display: 'Low Priority'},
     {value: 'medium', display: 'Medium Priority'},
     {value: 'high', display: 'High Priority'},
   ];
+
+  const statusList = [
+    {value: 'backlog', display: 'Backlog'},
+    {value: 'in-progress', display: 'In Progreses'},
+    {value: 'review', display: 'Review'},
+    {value: 'complete', display: 'Complete'},
+  ];
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("");
-  const [tagData, setTagData] = useState("");
+  const [priority, setPriority] = useState("medium");
+  const [status, setStatus] = useState(panel);
+  const [tagData, setTagData] = useState([]);
   const [checked, setChecked] = useState(false);
 
   const handleNameChange = (e) => setName(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
   const handlePriorityChange = (e) => setPriority(e.target.value);
+  const handleStatusChange = (e) => setStatus(e.target.value);
   const handleTagsChanges = (e) => setTagData(e);
   const handleCheckBox = (e) => setChecked(e.target.checked);
 
   const handleCreateTask = (e) => {
     if (checked) {
-      let tags = [];
-      for(let obj of tagData) {
-        tags.push(obj.id);
-      }
-      const payload = {name, description, priority}
+      let selectedTags = tagData.reduce((accum, v) => {
+        accum.push(v.value);
+        return accum;
+      }, []);
+
+      const payload = {name, description, status, priority, tags: selectedTags}
       payload.project_id = 1;
       payload.assignee_user_id = 1;
-      payload.status = panel;
       
       createNewTask(payload);
       onHide();
@@ -79,7 +83,17 @@ function EditTaskModal({show, panel, onHide, createNewTask }) {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.SelectCustom">
-            <Form.Label>Choose the status...</Form.Label>
+            <Form.Label>Status</Form.Label>
+            <Form.Control 
+              onChange={handleStatusChange}
+              value={status}
+              as="select" 
+            >
+              {statusList.map((status) => <option value={status.value} key={status.value}> {status.display}</option>)}
+            </Form.Control>
+          </Form.Group>
+          <Form.Group controlId="exampleForm.SelectCustom">
+            <Form.Label>Priority</Form.Label>
             <Form.Control 
               onChange={handlePriorityChange}
               value={priority}
@@ -90,12 +104,7 @@ function EditTaskModal({show, panel, onHide, createNewTask }) {
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>Add a Tag to Your Request</Form.Label>
-            <MultiSelect
-              options={tagList}
-              value={tagData}
-              onChange={handleTagsChanges}
-              labelledBy={"Select"}
-            />
+            <TagSelect onChange={handleTagsChanges} defaultValue={tagData} />
           </Form.Group>
           <Row>
             <Col md={9}>

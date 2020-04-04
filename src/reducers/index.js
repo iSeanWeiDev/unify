@@ -18,6 +18,7 @@ const reducers = combineReducers({
   app: require('./app').reducer,
   auth: require('./auth').reducer,
   userStory: require('./user-story').reducer,
+  tag: require('./tag').reducer,
 })
 const persistedReducer = persistReducer(persistConfig, reducers)
 const initialState = {}

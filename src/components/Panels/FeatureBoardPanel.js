@@ -7,6 +7,7 @@ import {
 } from 'react-bootstrap';
 import TaskComponent from '../Task/Task';
 import AddTaskModal from '../Modal/AddTaskModal';
+import TaskModal from '../Modal/TaskModal';
 
 function Panel ({title, tasks}) {
   const [modalShow, setModalShow] = useState(false);
@@ -15,23 +16,23 @@ function Panel ({title, tasks}) {
   };
 
   let imageName = '';
-  let panelName= '';
+  let panel = '';
   switch(title) {
     case 'backlog':
       imageName = 'line-back-log.png';
-      panelName = 'backlog';
+      panel = 'backlog';
       break;
     case 'In Progress':
       imageName = 'line-in-progress.png';
-      panelName = 'in-progress';
+      panel = 'in-progress';
       break;
     case 'Review':
       imageName = 'line-review.png';
-      panelName = 'review';
+      panel = 'review';
       break;
     case 'Complete':
       imageName = 'line-complete.png';
-      panelName = 'complete';
+      panel = 'complete';
       break;
     default:
       break;
@@ -63,9 +64,9 @@ function Panel ({title, tasks}) {
               Add task
               <Image src="/images/assets/icon-btn-plus.png" />
             </Button>
-            <AddTaskModal 
+            <TaskModal 
               show={modalShow}
-              panel={panelName}
+              defaultStatus={panel}
               onHide={() => setModalShow(false)}
             />
           </Card.Footer>

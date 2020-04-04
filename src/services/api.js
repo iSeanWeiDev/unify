@@ -42,6 +42,10 @@ const create = (baseURL = config.API_BASE_URL) => {
     delete payload.id;
     return authMiddleWare(api).put(`/user-stories/${id}`, payload);
   }
+
+  const getAllTags = () => authMiddleWare(api).get('/tags');
+  const createNewTag = payload => authMiddleWare(api).post('/tags', payload);
+  
   return {
     postLogin,
     getAllFeatures,
@@ -50,6 +54,8 @@ const create = (baseURL = config.API_BASE_URL) => {
     getTasks,
     createNewTask,
     updateTask,
+    getAllTags,
+    createNewTag,
   }
 }
 
